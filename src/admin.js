@@ -8,7 +8,25 @@ import {
   orderBy 
 } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js';
 
-const ADMIN_PIN = '1234';
+// Default PIN hash (SHA-256 of '1234')
+const DEFAULT_PIN_HASH = '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4';
+
+async function sha256(message) {
+  const msgBuffer = new TextEncoder().encode(message);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+export function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
 
 let allOrders = [];
 let allQuotes = [];
@@ -54,7 +72,31 @@ function updateThemeIcon(theme) {
   }
 }
 
-// ═══════════════ AUTHENTICATION ═══════════════
+// ═══════════════ AUTHENTICATION & SECURITY ═══════════════
+function getLockoutRemaining() {
+  const lockoutUntil = Number(localStorage.getItem('vyapar_admin_lockout') || 0);
+  const now = Date.now();
+  if (lockoutUntil > now) {
+    return Math.ceil((lockoutUntil - now) / 1000);
+  }
+  return 0;
+}
+
+function recordFailedAttempt() {
+  const attempts = Number(localStorage.getItem('vyapar_admin_failed_attempts') || 0) + 1;
+  localStorage.setItem('vyapar_admin_failed_attempts', attempts);
+  if (attempts >= 5) {
+    const lockUntil = Date.now() + (5 * 60 * 1000); // 5-minute lockout
+    localStorage.setItem('vyapar_admin_lockout', lockUntil);
+    localStorage.removeItem('vyapar_admin_failed_attempts');
+  }
+}
+
+function resetFailedAttempts() {
+  localStorage.removeItem('vyapar_admin_failed_attempts');
+  localStorage.removeItem('vyapar_admin_lockout');
+}
+
 function initAdminAuth() {
   const isAuth = sessionStorage.getItem('vyapar_admin_auth') === 'true';
   const loginView = document.getElementById('login-view');
@@ -84,11 +126,25 @@ function setupLoginForm() {
   const pinInput = document.getElementById('admin-pin-input');
   const errorEl = document.getElementById('login-error');
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     if (e) e.preventDefault();
-    const pin = pinInput ? pinInput.value.trim() : '';
+    
+    // Check brute-force lockout
+    const remainingSeconds = getLockoutRemaining();
+    if (remainingSeconds > 0) {
+      if (errorEl) {
+        errorEl.style.display = 'block';
+        errorEl.textContent = `🛡️ Security Lockout: Too many failed attempts. Please wait ${remainingSeconds}s.`;
+      }
+      return;
+    }
 
-    if (pin === ADMIN_PIN) {
+    const pin = pinInput ? pinInput.value.trim() : '';
+    const pinHash = await sha256(pin);
+    const savedPinHash = localStorage.getItem('vyapar_admin_pin_hash') || DEFAULT_PIN_HASH;
+
+    if (pinHash === savedPinHash) {
+      resetFailedAttempts();
       sessionStorage.setItem('vyapar_admin_auth', 'true');
       const loginView = document.getElementById('login-view');
       const dashboardView = document.getElementById('dashboard-view');
@@ -97,9 +153,17 @@ function setupLoginForm() {
       loadDashboard();
       if (window.lucide) window.lucide.createIcons();
     } else {
+      recordFailedAttempt();
+      const currentAttempts = Number(localStorage.getItem('vyapar_admin_failed_attempts') || 0);
+      const remainingAttempts = Math.max(0, 5 - currentAttempts);
+
       if (errorEl) {
         errorEl.style.display = 'block';
-        errorEl.textContent = '❌ Invalid PIN. Please enter the correct 4-digit code (1234).';
+        if (remainingAttempts > 0) {
+          errorEl.textContent = `❌ Invalid Security PIN. (${remainingAttempts} attempts remaining before temporary lockdown)`;
+        } else {
+          errorEl.textContent = `🛡️ Security Lockout: 5 failed attempts reached. Locked for 5 minutes.`;
+        }
       }
       if (pinInput) {
         pinInput.value = '';

@@ -5,34 +5,15 @@ import { fetchOrders, subscribeToOrder, addOrderRevision } from '../services/fir
 let currentLang = 'hi';
 let currentUnsubscribe = null;
 
-const DEFAULT_ORDERS = [
-  {
-    trackingId: 'VD-IND-8421',
-    clientName: 'Rajesh Agarwal',
-    businessName: 'Bikaner Sweets & Namkeen',
-    city: 'Alwar',
-    packageName: 'WhatsApp Catalog & Online Store',
-    estimatedPrice: 4999,
-    status: 'Final Polish & Review',
-    stageIndex: 4, // 1 to 5
-    createdAt: '2026-08-14',
-    deliveryDate: '2026-08-18',
-    revisions: ['Added new Gulab Jamun photos', 'Updated special festival discount price']
-  },
-  {
-    trackingId: 'VD-IND-6190',
-    clientName: 'Dharmendra Singh',
-    businessName: 'Lakshya Defense Academy',
-    city: 'Rohtak',
-    packageName: 'Coaching & Test Series Android App',
-    estimatedPrice: 14999,
-    status: 'Play Store Review & Final Handover',
-    stageIndex: 5,
-    createdAt: '2026-08-05',
-    deliveryDate: '2026-08-16',
-    revisions: ['Added Haryana CET Mock Test 5 & 6']
-  }
-];
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
 
 const STAGES = [
   { index: 1, nameEn: 'Order & Brief', nameHi: 'आर्डर & ब्रीफ', descHi: 'आवश्यकताएं और डिटेल्स प्राप्त' },
@@ -223,19 +204,19 @@ function renderOrderDetails(order) {
         <div class="tracker-header-left">
           <div class="tracker-client-badge">
             <span class="tracker-status-dot"></span>
-            <span>${isHi ? 'लाइव स्टेटस:' : 'Status:'} <strong>${order.status}</strong></span>
+            <span>${isHi ? 'लाइव स्टेटस:' : 'Status:'} <strong>${escapeHtml(order.status)}</strong></span>
           </div>
-          <h3 class="tracker-biz-name">${order.businessName || order.clientName}</h3>
+          <h3 class="tracker-biz-name">${escapeHtml(order.businessName || order.clientName)}</h3>
           <div class="tracker-pkg-title">
             <span class="t-icon">📦</span>
-            <span>${order.packageName} (${order.city ? order.city : 'India'})</span>
+            <span>${escapeHtml(order.packageName)} (${escapeHtml(order.city ? order.city : 'India')})</span>
           </div>
         </div>
 
         <div class="tracker-header-right">
           <div class="tracker-id-label">${isHi ? 'ऑर्डर ट्रैकिंग कोड' : 'Tracking Code'}</div>
-          <div class="tracker-id-pill">${order.trackingId}</div>
-          <div class="tracker-date-sub">${isHi ? 'डिलीवरी अनुमानित:' : 'Est. Delivery:'} <strong>${order.deliveryDate || '48 Hours'}</strong></div>
+          <div class="tracker-id-pill">${escapeHtml(order.trackingId)}</div>
+          <div class="tracker-date-sub">${isHi ? 'डिलीवरी अनुमानित:' : 'Est. Delivery:'} <strong>${escapeHtml(order.deliveryDate || '48 Hours')}</strong></div>
         </div>
       </div>
 
@@ -297,7 +278,7 @@ function renderOrderDetails(order) {
             ${(order.revisions && order.revisions.length > 0) ? order.revisions.map((r, i) => `
               <div class="tracker-history-item">
                 <span class="h-badge">#${i + 1}</span>
-                <span class="h-text">${r}</span>
+                <span class="h-text">${escapeHtml(r)}</span>
                 <span class="h-status-check">✓ दर्ज</span>
               </div>
             `).join('') : `
