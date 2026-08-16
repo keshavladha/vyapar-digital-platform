@@ -1,4 +1,4 @@
-// Vyapar Digital - Admin Command Center Controller
+// Vyapar Digital - Agency Command Center Controller (English / Sarvam Theme)
 import { db, isFirebaseReady, saveOrder, updateOrderStage, fetchOrders } from './services/firebase.js';
 import { 
   collection, 
@@ -16,6 +16,8 @@ let currentView = 'kanban'; // 'kanban', 'table', 'quotes'
 
 // ═══════════════ BOOT ═══════════════
 function boot() {
+  restoreTheme();
+  setupThemeToggle();
   initAdminAuth();
   if (window.lucide) window.lucide.createIcons();
 }
@@ -24,6 +26,32 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', boot);
 } else {
   boot();
+}
+
+// ═══════════════ THEME TOGGLE ═══════════════
+function restoreTheme() {
+  const savedTheme = localStorage.getItem('vyapar_theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  updateThemeIcon(savedTheme);
+}
+
+function setupThemeToggle() {
+  const toggleBtn = document.getElementById('theme-toggle-btn');
+  toggleBtn?.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('vyapar_theme', newTheme);
+    updateThemeIcon(newTheme);
+  });
+}
+
+function updateThemeIcon(theme) {
+  const icon = document.getElementById('theme-icon');
+  if (icon) {
+    icon.setAttribute('data-lucide', theme === 'dark' ? 'sun' : 'moon');
+    if (window.lucide) window.lucide.createIcons();
+  }
 }
 
 // ═══════════════ AUTHENTICATION ═══════════════
@@ -71,7 +99,7 @@ function setupLoginForm() {
     } else {
       if (errorEl) {
         errorEl.style.display = 'block';
-        errorEl.textContent = '❌ गलत पिन! कृपया सही 4-अंकों का पिन (1234) डालें।';
+        errorEl.textContent = '❌ Invalid PIN. Please enter the correct 4-digit code (1234).';
       }
       if (pinInput) {
         pinInput.value = '';
@@ -141,10 +169,15 @@ function renderMetrics() {
   const deliveredOrders = allOrders.filter(o => (o.stageIndex || 1) === 5).length;
   const totalRevenue = allOrders.reduce((sum, o) => sum + (Number(o.estimatedPrice) || 0), 0);
 
-  document.getElementById('stat-total-orders').textContent = totalOrders;
-  document.getElementById('stat-active-orders').textContent = activeOrders;
-  document.getElementById('stat-delivered-orders').textContent = deliveredOrders;
-  document.getElementById('stat-total-rev').textContent = `₹${totalRevenue.toLocaleString('en-IN')}`;
+  const elTotal = document.getElementById('stat-total-orders');
+  const elActive = document.getElementById('stat-active-orders');
+  const elDelivered = document.getElementById('stat-delivered-orders');
+  const elRev = document.getElementById('stat-total-rev');
+
+  if (elTotal) elTotal.textContent = totalOrders;
+  if (elActive) elActive.textContent = activeOrders;
+  if (elDelivered) elDelivered.textContent = deliveredOrders;
+  if (elRev) elRev.textContent = `₹${totalRevenue.toLocaleString('en-IN')}`;
 }
 
 // ═══════════════ VIEWS / TABS ═══════════════
@@ -187,7 +220,7 @@ function renderKanban() {
     if (countEl) countEl.textContent = stageOrders.length;
 
     if (stageOrders.length === 0) {
-      colList.innerHTML = `<div style="text-align:center;padding:20px;color:var(--text-muted-dark);font-size:0.78rem;">कोई आर्डर नहीं</div>`;
+      colList.innerHTML = `<div style="text-align:center;padding:24px;color:var(--text-muted);font-size:0.8rem;">No projects in this stage</div>`;
       continue;
     }
 
@@ -195,13 +228,13 @@ function renderKanban() {
       const cleanPhone = (order.phone || '').replace(/[^0-9]/g, '');
       const waPhone = cleanPhone.length === 10 ? '91' + cleanPhone : (cleanPhone || '917027340360');
       const waMsg = encodeURIComponent(
-        `*Namaste ${order.clientName || ''} ji!*\n\n` +
-        `Vyapar Digital se sampark karne ke liye dhanyawad. Aapke business *"${order.businessName || ''}"* ka project update:\n\n` +
+        `*Namaste ${order.clientName || ''}!*\n\n` +
+        `Thank you for choosing Vyapar Digital. Here is your project update for *"${order.businessName || ''}"*:\n\n` +
         `📌 *Official Tracking ID:* ${order.trackingId}\n` +
-        `🛠️ *Service:* ${order.packageName}\n` +
-        `💰 *Package Rate:* ₹${(order.estimatedPrice || 0).toLocaleString('en-IN')}\n\n` +
-        `Aap website par real-time progress dekh sakte hain: https://vyapardigital.vercel.app/#tracker\n\n` +
-        `Kripya aage badhane ke liye confirm karein.`
+        `🛠️ *Package:* ${order.packageName}\n` +
+        `💰 *Package Rate:* ₹${(Number(order.estimatedPrice) || 0).toLocaleString('en-IN')}\n\n` +
+        `Track live milestone progress anytime on our portal: https://vyapardigital.vercel.app/#tracker\n\n` +
+        `Please confirm to proceed with the next milestone.`
       );
 
       return `
@@ -211,7 +244,7 @@ function renderKanban() {
             <span class="card-price">₹${(Number(order.estimatedPrice) || 0).toLocaleString('en-IN')}</span>
           </div>
 
-          <div class="card-biz-name">${order.businessName || 'Business Project'}</div>
+          <div class="card-biz-name">${order.businessName || 'Client Project'}</div>
           
           <div class="card-client-meta">
             <span>👤 ${order.clientName || 'Client'}</span>
@@ -229,11 +262,11 @@ function renderKanban() {
 
           <div class="card-actions">
             <select class="stage-select-dropdown" data-tid="${order.trackingId}">
-              <option value="1" ${order.stageIndex === 1 ? 'selected' : ''}>1. Brief</option>
-              <option value="2" ${order.stageIndex === 2 ? 'selected' : ''}>2. Draft</option>
-              <option value="3" ${order.stageIndex === 3 ? 'selected' : ''}>3. Build</option>
-              <option value="4" ${order.stageIndex === 4 ? 'selected' : ''}>4. Review</option>
-              <option value="5" ${order.stageIndex === 5 ? 'selected' : ''}>5. Live ✅</option>
+              <option value="1" ${order.stageIndex === 1 ? 'selected' : ''}>1. Brief & Intake</option>
+              <option value="2" ${order.stageIndex === 2 ? 'selected' : ''}>2. UI/UX & Draft</option>
+              <option value="3" ${order.stageIndex === 3 ? 'selected' : ''}>3. Development</option>
+              <option value="4" ${order.stageIndex === 4 ? 'selected' : ''}>4. Client Review</option>
+              <option value="5" ${order.stageIndex === 5 ? 'selected' : ''}>5. Delivered & Live ✅</option>
             </select>
 
             <a href="https://wa.me/${waPhone}?text=${waMsg}" target="_blank" class="card-wa-btn" title="Send Official Tracking ID & Update on WhatsApp">
@@ -277,7 +310,7 @@ function renderTable() {
   );
 
   if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:30px;color:var(--text-muted-dark);">कोई रिकॉर्ड नहीं मिला</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:36px;color:var(--text-muted);">No records found matching your search.</td></tr>`;
     return;
   }
 
@@ -289,15 +322,15 @@ function renderTable() {
       <tr>
         <td><span class="card-tid">${order.trackingId}</span></td>
         <td>
-          <div style="font-weight:800;color:#FFF;">${order.businessName || 'Business'}</div>
-          <div style="font-size:0.75rem;color:var(--text-muted-dark);">${order.city || 'India'}</div>
+          <div style="font-weight:800;color:var(--text-primary);">${order.businessName || 'Business'}</div>
+          <div style="font-size:0.76rem;color:var(--text-muted);">${order.city || 'India'}</div>
         </td>
         <td>
-          <div>${order.clientName || 'Client'}</div>
-          <div style="font-size:0.75rem;color:#60A5FA;">📞 ${order.phone || '-'}</div>
+          <div style="font-weight:600;">${order.clientName || 'Client'}</div>
+          <div style="font-size:0.76rem;color:var(--primary);">📞 ${order.phone || '-'}</div>
         </td>
         <td><span class="card-service-tag">${order.packageName}</span></td>
-        <td style="font-weight:800;color:#34D399;">₹${(Number(order.estimatedPrice) || 0).toLocaleString('en-IN')}</td>
+        <td style="font-weight:800;color:var(--whatsapp);">₹${(Number(order.estimatedPrice) || 0).toLocaleString('en-IN')}</td>
         <td>
           <select class="stage-select-dropdown" data-tid="${order.trackingId}">
             <option value="1" ${order.stageIndex === 1 ? 'selected' : ''}>1. Brief</option>
@@ -307,7 +340,7 @@ function renderTable() {
             <option value="5" ${order.stageIndex === 5 ? 'selected' : ''}>5. Live ✅</option>
           </select>
         </td>
-        <td>
+        <td style="text-align: center;">
           <a href="https://wa.me/${waPhone}" target="_blank" class="card-wa-btn" style="margin: 0 auto;">
             <svg class="wa-icon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.978-.276-.1-.476-.15-.677.15-.2.301-.777.978-.952 1.179-.176.201-.351.226-.652.075-1.928-.966-3.197-1.722-4.464-3.899-.17-.291-.018-.448.133-.598.136-.135.301-.351.452-.527.15-.175.2-.301.301-.501.1-.2.05-.376-.025-.526-.075-.15-.677-1.632-.927-2.234-.244-.587-.492-.507-.677-.516-.175-.008-.376-.01-.577-.01-.201 0-.527.075-.802.376-.276.301-1.053 1.028-1.053 2.508 0 1.48 1.078 2.91 1.229 3.11.15.201 2.122 3.24 5.141 4.544 2.146.927 2.981.902 4.04.747 1.154-.168 2.458-1.004 2.809-1.973.351-.97 0-.968-.15-1.169-.15-.201-.351-.276-.652-.426z"/><path d="M12.004 0C5.373 0 0 5.373 0 12.004c0 2.116.553 4.103 1.52 5.845L.055 24l6.313-1.656A11.94 11.94 0 0012.004 24c6.63 0 12.004-5.374 12.004-12.004C24.008 5.373 18.634 0 12.004 0zm0 21.84c-1.874 0-3.642-.516-5.166-1.42l-.37-.22-3.842 1.008 1.025-3.743-.241-.384A9.83 9.83 0 012.164 12c0-5.426 4.414-9.84 9.84-9.84 5.426 0 9.84 4.414 9.84 9.84 0 5.426-4.414 9.84-9.84 9.84z"/></svg>
           </a>
@@ -329,7 +362,7 @@ function renderQuotes() {
   if (!container) return;
 
   if (allQuotes.length === 0) {
-    container.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted-dark);">अभी तक कोई कैलकुलेटर इन्क्वायरी नहीं है</div>`;
+    container.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--text-muted);">No rate calculator leads recorded yet.</div>`;
     return;
   }
 
@@ -337,9 +370,9 @@ function renderQuotes() {
     <div class="quote-card">
       <div class="quote-card-header">
         <span class="quote-biz-pill">${q.businessType || 'Local Business'}</span>
-        <span style="font-weight:800;color:#34D399;">₹${(Number(q.totalEstimatedPrice) || 0).toLocaleString('en-IN')}</span>
+        <span style="font-weight:800;color:var(--whatsapp);">₹${(Number(q.totalEstimatedPrice) || 0).toLocaleString('en-IN')}</span>
       </div>
-      <div style="font-size:0.8rem;color:var(--text-muted-dark);">${q.quoteId || 'Quote Lead'}</div>
+      <div style="font-size:0.8rem;color:var(--text-muted);">${q.quoteId || 'Calculator Inquiry'}</div>
       <div class="quote-items-list">
         ${(q.selectedItems || []).map(item => `<span class="quote-item-chip">✓ ${item}</span>`).join('')}
       </div>
@@ -388,6 +421,6 @@ function setupManualOrderModal() {
     await saveOrder(newOrder);
     form.reset();
     modal.classList.remove('active');
-    alert(`✓ नया आर्डर सफलतापूर्वक दर्ज हो गया! Tracking ID: ${newOrder.trackingId}`);
+    alert(`✓ Project created and synced successfully! Tracking ID: ${newOrder.trackingId}`);
   });
 }

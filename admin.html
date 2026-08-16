@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Command Center | Vyapar Digital (व्यापार डिजिटल)</title>
+  <title>Agency Command Center | Vyapar Digital</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="icon" href="src/assets/logo.png" type="image/png">
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts: Plus Jakarta Sans, Outfit, Playfair Display -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Rozha+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -24,20 +24,21 @@
   <div class="admin-login-wrapper" id="login-view">
     <div class="admin-login-card">
       <img src="src/assets/logo.png" alt="Vyapar Digital" class="login-logo-img">
-      <h2 class="login-title">Admin Command Center</h2>
-      <p class="login-subtitle">सुरक्षित संस्थापक पोर्टल (Founder Access Only)</p>
+      <div class="login-badge">Founder Access Only</div>
+      <h2 class="login-title">Agency Command Center</h2>
+      <p class="login-subtitle">Enter your 4-digit security PIN to access the dashboard</p>
 
       <form class="pin-form" id="pin-form">
         <div class="pin-input-group">
-          <label for="admin-pin-input">4-अंकों का सुरक्षा पिन (PIN) दर्ज करें:</label>
+          <label for="admin-pin-input">Security PIN:</label>
           <input type="password" id="admin-pin-input" class="pin-input" maxlength="4" placeholder="••••" autofocus required>
         </div>
 
         <div class="login-error" id="login-error"></div>
 
-        <button type="submit" class="btn-login">
+        <button type="submit" class="btn-login" id="btn-login-submit">
           <i data-lucide="lock"></i>
-          <span>लॉगिन करें (Unlock Dashboard)</span>
+          <span>Unlock Command Center</span>
         </button>
       </form>
     </div>
@@ -45,37 +46,43 @@
 
   <!-- ═══════════════ SCREEN 2: AGENCY COMMAND CENTER ═══════════════ -->
   <div class="admin-dashboard" id="dashboard-view">
-    <!-- Top Header -->
+    <!-- Top Navigation Header -->
     <header class="admin-header">
       <div class="admin-header-left">
-        <img src="src/assets/logo.png" alt="Vyapar Digital" style="height: 28px;">
+        <img src="src/assets/logo.png" alt="Vyapar Digital" style="height: 30px;">
         <span class="admin-badge">Agency CRM</span>
       </div>
 
       <div class="admin-header-right">
         <div class="sync-status">
           <span class="sync-dot"></span>
-          <span>Firebase Realtime Cloud</span>
+          <span>Firebase Cloud Live</span>
         </div>
+
+        <button class="btn-header" id="theme-toggle-btn" title="Toggle Dark/Light Mode">
+          <i data-lucide="moon" id="theme-icon" style="width: 15px; height: 15px;"></i>
+        </button>
+
         <a href="index.html" class="btn-header" target="_blank" title="View Public Website">
           <i data-lucide="external-link" style="width: 14px; height: 14px;"></i>
-          <span>वेबसाइट देखें</span>
+          <span>Live Site</span>
         </a>
+
         <button class="btn-header btn-logout" id="admin-logout-btn">
           <i data-lucide="log-out" style="width: 14px; height: 14px;"></i>
-          <span>लॉगआउट</span>
+          <span>Logout</span>
         </button>
       </div>
     </header>
 
     <div class="admin-container">
-      <!-- 4 Key Agency Metrics -->
+      <!-- 4 Key Agency Metrics Overview -->
       <div class="stats-grid">
         <div class="stat-card">
           <div class="stat-icon-wrap icon-blue">📦</div>
           <div class="stat-details">
             <span class="stat-value" id="stat-total-orders">0</span>
-            <span class="stat-title">कुल प्रोजेक्ट्स (Total Orders)</span>
+            <span class="stat-title">Total Client Projects</span>
           </div>
         </div>
 
@@ -83,7 +90,7 @@
           <div class="stat-icon-wrap icon-saffron">⚡</div>
           <div class="stat-details">
             <span class="stat-value" id="stat-active-orders">0</span>
-            <span class="stat-title">सक्रिय प्रोजेक्ट्स (In Progress)</span>
+            <span class="stat-title">In-Progress Pipeline</span>
           </div>
         </div>
 
@@ -91,7 +98,7 @@
           <div class="stat-icon-wrap icon-green">✅</div>
           <div class="stat-details">
             <span class="stat-value" id="stat-delivered-orders">0</span>
-            <span class="stat-title">पूर्ण व लाइव (Delivered)</span>
+            <span class="stat-title">Completed & Delivered</span>
           </div>
         </div>
 
@@ -99,31 +106,31 @@
           <div class="stat-icon-wrap icon-purple">💰</div>
           <div class="stat-details">
             <span class="stat-value" id="stat-total-rev">₹0</span>
-            <span class="stat-title">अनुमानित रेवेन्यू (Pipeline Value)</span>
+            <span class="stat-title">Pipeline Order Value</span>
           </div>
         </div>
       </div>
 
-      <!-- Navigation Tabs & Actions -->
+      <!-- Navigation Tabs & Action Buttons -->
       <div class="admin-nav-bar">
         <div class="tab-buttons">
           <button class="tab-btn active" data-view="kanban">
             <i data-lucide="kanban" style="width: 15px; height: 15px;"></i>
-            <span>Kanban पाइपलाइन</span>
+            <span>Kanban Pipeline</span>
           </button>
           <button class="tab-btn" data-view="table">
             <i data-lucide="table" style="width: 15px; height: 15px;"></i>
-            <span>टेबल व्यू (Data Sheet)</span>
+            <span>Data Sheet View</span>
           </button>
           <button class="tab-btn" data-view="quotes">
             <i data-lucide="calculator" style="width: 15px; height: 15px;"></i>
-            <span>कैलकुलेटर लीड्स</span>
+            <span>Rate Calculator Leads</span>
           </button>
         </div>
 
         <button class="btn-add-order" id="btn-open-add-order">
           <i data-lucide="plus-circle" style="width: 16px; height: 16px;"></i>
-          <span>+ नया आर्डर जोड़ें (Manual Order)</span>
+          <span>+ Add Client Project</span>
         </button>
       </div>
 
@@ -132,7 +139,7 @@
         <!-- Stage 1 -->
         <div class="kanban-col">
           <div class="kanban-col-header">
-            <span class="col-title">📥 1. आर्डर & ब्रीफ</span>
+            <span class="col-title">📥 1. Brief & Intake</span>
             <span class="col-count" id="col-count-1">0</span>
           </div>
           <div class="kanban-cards-list" id="kanban-col-1"></div>
@@ -141,7 +148,7 @@
         <!-- Stage 2 -->
         <div class="kanban-col">
           <div class="kanban-col-header">
-            <span class="col-title">🎨 2. ड्राफ्ट & डिजाइन</span>
+            <span class="col-title">🎨 2. UI/UX & Draft</span>
             <span class="col-count" id="col-count-2">0</span>
           </div>
           <div class="kanban-cards-list" id="kanban-col-2"></div>
@@ -150,7 +157,7 @@
         <!-- Stage 3 -->
         <div class="kanban-col">
           <div class="kanban-col-header">
-            <span class="col-title">⚙️ 3. बिल्ड & कोडिंग</span>
+            <span class="col-title">⚙️ 3. Development</span>
             <span class="col-count" id="col-count-3">0</span>
           </div>
           <div class="kanban-cards-list" id="kanban-col-3"></div>
@@ -159,7 +166,7 @@
         <!-- Stage 4 -->
         <div class="kanban-col">
           <div class="kanban-col-header">
-            <span class="col-title">👁️ 4. ग्राहक रिव्यु</span>
+            <span class="col-title">👁️ 4. Client Review</span>
             <span class="col-count" id="col-count-4">0</span>
           </div>
           <div class="kanban-cards-list" id="kanban-col-4"></div>
@@ -168,7 +175,7 @@
         <!-- Stage 5 -->
         <div class="kanban-col">
           <div class="kanban-col-header">
-            <span class="col-title">🎉 5. लाइव & डिलीवर्ड</span>
+            <span class="col-title">🎉 5. Live & Delivered</span>
             <span class="col-count" id="col-count-5">0</span>
           </div>
           <div class="kanban-cards-list" id="kanban-col-5"></div>
@@ -178,19 +185,19 @@
       <!-- ═════ TAB 2: TABLE VIEW ═════ -->
       <div class="admin-table-container" id="table-view">
         <div class="table-header-controls">
-          <input type="text" id="table-search-input" class="table-search-input" placeholder="🔍 नाम, दुकान, फोन या Tracking ID खोजें...">
+          <input type="text" id="table-search-input" class="table-search-input" placeholder="🔍 Search by client, business, phone or tracking ID...">
         </div>
         <div style="overflow-x: auto;">
           <table class="admin-data-table">
             <thead>
               <tr>
                 <th>Tracking ID</th>
-                <th>दुकान / बिजनेस</th>
-                <th>ग्राहक विवरण</th>
-                <th>सर्विस पैकेज</th>
-                <th>बजट</th>
-                <th>स्टेज (Milestone)</th>
-                <th style="text-align: center;">व्हाट्सएप</th>
+                <th>Business Name</th>
+                <th>Client Details</th>
+                <th>Service Package</th>
+                <th>Budget</th>
+                <th>Milestone Stage</th>
+                <th style="text-align: center;">WhatsApp</th>
               </tr>
             </thead>
             <tbody id="admin-table-body"></tbody>
@@ -203,34 +210,34 @@
     </div>
   </div>
 
-  <!-- ═══════════════ MODAL: MANUAL OFFLINE ORDER ═══════════════ -->
+  <!-- ═══════════════ MODAL: MANUAL CLIENT ORDER ═══════════════ -->
   <div class="admin-modal-overlay" id="add-order-modal">
     <div class="admin-modal-box">
       <div class="modal-header">
-        <h3 class="modal-title">नया कस्टमर आर्डर दर्ज करें</h3>
+        <h3 class="modal-title">Create New Client Project</h3>
         <button class="modal-close-btn" id="modal-close-btn">&times;</button>
       </div>
 
       <form id="manual-order-form">
         <div class="modal-form-grid">
           <div>
-            <label style="font-size:0.78rem;font-weight:700;color:var(--text-muted-dark);">ग्राहक का नाम *</label>
-            <input type="text" id="manual-client-name" class="modal-input" placeholder="जैसे: अमित शर्मा" required>
+            <label style="font-size:0.78rem;font-weight:700;color:var(--text-secondary);">Client Name *</label>
+            <input type="text" id="manual-client-name" class="modal-input" placeholder="e.g. Rajesh Agarwal" required>
           </div>
           <div>
-            <label style="font-size:0.78rem;font-weight:700;color:var(--text-muted-dark);">दुकान / बिजनेस का नाम *</label>
-            <input type="text" id="manual-biz-name" class="modal-input" placeholder="जैसे: बालाजी स्वीट्स" required>
+            <label style="font-size:0.78rem;font-weight:700;color:var(--text-secondary);">Business / Brand Name *</label>
+            <input type="text" id="manual-biz-name" class="modal-input" placeholder="e.g. Bikaner Sweets" required>
           </div>
           <div>
-            <label style="font-size:0.78rem;font-weight:700;color:var(--text-muted-dark);">व्हाट्सएप मोबाइल नंबर *</label>
-            <input type="tel" id="manual-phone" class="modal-input" placeholder="जैसे: 9812345678" required>
+            <label style="font-size:0.78rem;font-weight:700;color:var(--text-secondary);">WhatsApp Phone Number *</label>
+            <input type="tel" id="manual-phone" class="modal-input" placeholder="e.g. 9812345678" required>
           </div>
           <div>
-            <label style="font-size:0.78rem;font-weight:700;color:var(--text-muted-dark);">शहर / कस्बा</label>
-            <input type="text" id="manual-city" class="modal-input" placeholder="जैसे: ऐलनाबाद / सिरसा">
+            <label style="font-size:0.78rem;font-weight:700;color:var(--text-secondary);">City / Town</label>
+            <input type="text" id="manual-city" class="modal-input" placeholder="e.g. Ellenabad / Sirsa">
           </div>
           <div>
-            <label style="font-size:0.78rem;font-weight:700;color:var(--text-muted-dark);">सर्विस पैकेज</label>
+            <label style="font-size:0.78rem;font-weight:700;color:var(--text-secondary);">Service Package</label>
             <select id="manual-package" class="modal-input">
               <option value="WhatsApp Store & 1-Page Website">WhatsApp Store & Website (₹1,999)</option>
               <option value="Complete Custom Web + Digital Store">Full-Stack Web Store (₹4,999)</option>
@@ -240,17 +247,17 @@
             </select>
           </div>
           <div>
-            <label style="font-size:0.78rem;font-weight:700;color:var(--text-muted-dark);">तय राशि (₹ Price)</label>
+            <label style="font-size:0.78rem;font-weight:700;color:var(--text-secondary);">Project Fee (₹)</label>
             <input type="number" id="manual-price" class="modal-input" value="1999" required>
           </div>
           <div class="form-field-full">
-            <label style="font-size:0.78rem;font-weight:700;color:var(--text-muted-dark);">प्रोजेक्ट निर्देश / नोट</label>
-            <textarea id="manual-details" class="modal-input" rows="2" placeholder="क्लाइंट की खास जरूरतें या निर्देश..."></textarea>
+            <label style="font-size:0.78rem;font-weight:700;color:var(--text-secondary);">Project Requirements / Notes</label>
+            <textarea id="manual-details" class="modal-input" rows="2" placeholder="Key deliverables, custom notes, or client requests..."></textarea>
           </div>
         </div>
 
-        <button type="submit" class="btn-login" style="width: 100%; margin-top: 20px;">
-          <span>✓ आर्डर सेव करें (Create & Sync)</span>
+        <button type="submit" class="btn-login" style="width: 100%; margin-top: 22px;">
+          <span>✓ Save Project & Sync to Cloud</span>
         </button>
       </form>
     </div>
