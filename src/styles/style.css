@@ -2088,11 +2088,12 @@ section[id], .section-padding[id], #home, #simulator, #services, #process, #calc
 }
 .footer-giant-wordmark span {
   font-family: var(--font-serif);
-  font-size: clamp(4.5rem, 16vw, 12rem);
+  font-size: clamp(2.8rem, 9.5vw, 7.5rem);
   font-weight: 900;
-  line-height: 0.85;
-  letter-spacing: 0.12em;
+  line-height: 1;
+  letter-spacing: 0.04em;
   display: block;
+  white-space: nowrap;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.01) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
