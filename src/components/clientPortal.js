@@ -44,19 +44,18 @@ const STAGES = [
 
 export function initClientPortal(lang = 'hi') {
   currentLang = lang;
-  seedInitialOrders();
-  renderTracker();
+  renderTracker(null);
 
-  // Fetch orders from Firebase Cloud
+  // Fetch orders from Firebase Cloud in background
   fetchOrders().then((orders) => {
-    if (orders && orders.length) {
-      const input = document.getElementById('tracker-input');
-      const currentId = input ? input.value : null;
+    const input = document.getElementById('tracker-input');
+    const currentId = input ? input.value.trim() : null;
+    if (currentId) {
       renderTracker(currentId);
     }
   });
 
-  // Listen for trackOrder event
+  // Listen for trackOrder event (when user clicks "Track Live Status" from booking confirmation)
   window.addEventListener('trackOrder', (e) => {
     if (e.detail && e.detail.trackingId) {
       renderTracker(e.detail.trackingId);
@@ -67,32 +66,26 @@ export function initClientPortal(lang = 'hi') {
 export function updateClientPortalLang(lang) {
   currentLang = lang;
   const input = document.getElementById('tracker-input');
-  const currentId = input ? input.value : null;
+  const currentId = input ? input.value.trim() : null;
   renderTracker(currentId);
-}
-
-function seedInitialOrders() {
-  const existing = localStorage.getItem('vyapar_digital_orders');
-  if (!existing) {
-    localStorage.setItem('vyapar_digital_orders', JSON.stringify(DEFAULT_ORDERS));
-  }
 }
 
 function getOrders() {
   try {
     return JSON.parse(localStorage.getItem('vyapar_digital_orders') || '[]');
   } catch (e) {
-    return DEFAULT_ORDERS;
+    return [];
   }
 }
 
-function renderTracker(searchId = 'VD-IND-8421') {
+function renderTracker(searchId = null) {
   const container = document.getElementById('tracker-container');
   if (!container) return;
 
   const isHi = currentLang === 'hi';
   const orders = getOrders();
-  const matchedOrder = orders.find(o => o.trackingId?.toUpperCase() === searchId?.toUpperCase()) || orders[0];
+  const trimmedId = searchId ? searchId.trim() : '';
+  const matchedOrder = trimmedId ? orders.find(o => o.trackingId?.toUpperCase() === trimmedId.toUpperCase()) : null;
 
   container.innerHTML = `
     <div class="tracker-main-container">
@@ -100,26 +93,32 @@ function renderTracker(searchId = 'VD-IND-8421') {
       <div class="tracker-search-wrap">
         <div class="tracker-search-box">
           <i data-lucide="search" class="tracker-search-icon"></i>
-          <input type="text" id="tracker-input" class="tracker-search-input" value="${matchedOrder ? matchedOrder.trackingId : (searchId || '')}" placeholder="${isHi ? 'अपना ट्रैकिंग ID डालें (उदा: VD-IND-8421)...' : 'Enter Tracking ID (e.g. VD-IND-8421)...'}">
+          <input type="text" id="tracker-input" class="tracker-search-input" value="${trimmedId}" placeholder="${isHi ? 'अपना 6-अंकों का ट्रैकिंग ID डालें (उदा: VD-IND-5346)...' : 'Enter Your Tracking ID (e.g. VD-IND-5346)...'}">
           <button class="btn btn-saffron tracker-search-submit" id="tracker-search-btn">
             <span>${isHi ? 'ट्रैक करें' : 'Track Status'}</span> →
           </button>
         </div>
-        <div class="tracker-sample-hint">
-          <span>💡 ${isHi ? 'डेमो ट्रैकिंग ID क्लिक करें:' : 'Try Sample Tracking IDs:'}</span>
-          <button class="tracker-chip-btn" data-demo-id="VD-IND-8421">VD-IND-8421 (मिठाई स्टोर)</button>
-          <button class="tracker-chip-btn" data-demo-id="VD-IND-6190">VD-IND-6190 (एकेडमी ऐप)</button>
-        </div>
       </div>
 
-      <!-- Order Details Live Card -->
-      ${matchedOrder ? renderOrderDetails(matchedOrder) : `
+      <!-- Order Details Live Card / Prompt / Empty State -->
+      ${matchedOrder ? renderOrderDetails(matchedOrder) : (trimmedId ? `
         <div class="tracker-empty-state">
           <div class="tracker-empty-icon">🔍</div>
           <h3>${isHi ? 'कोई प्रोजेक्ट नहीं मिला' : 'No Project Found'}</h3>
-          <p>${isHi ? 'कृपया सही ट्रैकिंग ID दर्ज करें या व्हाट्सएप पर संपर्क करें।' : 'Please enter a valid Tracking ID or contact support on WhatsApp.'}</p>
+          <p>${isHi ? `ट्रैकिंग ID "${trimmedId}" के लिए कोई सक्रिय आर्डर नहीं मिला। कृपया अपना सही ट्रैकिंग कोड जांचें या व्हाट्सएप पर संपर्क करें।` : `No active project found for "${trimmedId}". Please verify your tracking ID or contact support on WhatsApp.`}</p>
+          <a href="https://wa.me/${CONFIG.whatsappNumber}?text=Namaste%20Vyapar%20Digital!%20Mera%20tracking%20ID%20${encodeURIComponent(trimmedId)}%20check%20karna%20hai." target="_blank" class="btn btn-whatsapp btn-sm" style="margin-top: 14px;">
+            <svg class="wa-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.978-.276-.1-.476-.15-.677.15-.2.301-.777.978-.952 1.179-.176.201-.351.226-.652.075-1.928-.966-3.197-1.722-4.464-3.899-.17-.291-.018-.448.133-.598.136-.135.301-.351.452-.527.15-.175.2-.301.301-.501.1-.2.05-.376-.025-.526-.075-.15-.677-1.632-.927-2.234-.244-.587-.492-.507-.677-.516-.175-.008-.376-.01-.577-.01-.201 0-.527.075-.802.376-.276.301-1.053 1.028-1.053 2.508 0 1.48 1.078 2.91 1.229 3.11.15.201 2.122 3.24 5.141 4.544 2.146.927 2.981.902 4.04.747 1.154-.168 2.458-1.004 2.809-1.973.351-.97 0-.968-.15-1.169-.15-.201-.351-.276-.652-.426z"/><path d="M12.004 0C5.373 0 0 5.373 0 12.004c0 2.116.553 4.103 1.52 5.845L.055 24l6.313-1.656A11.94 11.94 0 0012.004 24c6.63 0 12.004-5.374 12.004-12.004C24.008 5.373 18.634 0 12.004 0zm0 21.84c-1.874 0-3.642-.516-5.166-1.42l-.37-.22-3.842 1.008 1.025-3.743-.241-.384A9.83 9.83 0 012.164 12c0-5.426 4.414-9.84 9.84-9.84 5.426 0 9.84 4.414 9.84 9.84 0 5.426-4.414 9.84-9.84 9.84z"/></svg>
+            <span>WhatsApp Support</span>
+          </a>
         </div>
-      `}
+      ` : `
+        <div class="tracker-prompt-state">
+          <div class="tracker-lock-icon">🔒</div>
+          <h4>${isHi ? 'प्रोजेक्ट स्टेटस देखने के लिए अपना ट्रैकिंग ID दर्ज करें' : 'Enter Your Tracking ID to View Project Status'}</h4>
+          <p>${isHi ? 'आर्डर बुक करने पर प्राप्त हुआ 6-अंकों का ट्रैकिंग कोड ऊपर बॉक्स में दर्ज करें और "ट्रैक करें" पर क्लिक करें।' : 'Enter your unique 6-digit project tracking code in the search box above to view your milestone progress in real-time.'}</p>
+          <div class="tracker-security-badge">🛡️ 100% Private Client Milestone Tracker</div>
+        </div>
+      `)}
     </div>
   `;
 
@@ -136,14 +135,6 @@ function renderTracker(searchId = 'VD-IND-8421') {
       }
     });
   }
-
-  // Sample ID chips click
-  container.querySelectorAll('.tracker-chip-btn').forEach(chip => {
-    chip.addEventListener('click', () => {
-      const demoId = chip.getAttribute('data-demo-id');
-      renderTracker(demoId);
-    });
-  });
 
   // Attach real-time subscription for matched order
   if (currentUnsubscribe) {
