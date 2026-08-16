@@ -25,8 +25,8 @@ export const firebaseConfig = {
   measurementId: "G-8RC1KPLH7S"
 };
 
-let app = null;
-let db = null;
+export let app = null;
+export let db = null;
 export let isFirebaseReady = false;
 
 try {
