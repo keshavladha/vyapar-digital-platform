@@ -2105,18 +2105,22 @@ section[id], .section-padding[id], #home, #simulator, #services, #process, #calc
 .sim-controls-panel {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
+  background: var(--bg-surface);
+  padding: 24px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--glass-border);
 }
 .sim-input-group, .sim-category-group, .sim-mode-group {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 .sim-label {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   font-weight: 700;
   color: var(--text-primary);
 }
@@ -2124,35 +2128,35 @@ section[id], .section-padding[id], #home, #simulator, #services, #process, #calc
   display: flex;
   align-items: center;
   gap: 8px;
+  width: 100%;
 }
 .sim-input {
   flex: 1;
-  padding: 12px 18px;
+  min-width: 0;
+  padding: 10px 16px;
   border-radius: var(--radius-full);
-  border: 1.5px solid var(--glass-border);
-  background: var(--bg-surface);
+  border: 1.5px solid rgba(217, 119, 6, 0.4);
+  background: var(--bg-card);
   color: var(--text-primary);
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 0.95rem;
+  font-weight: 700;
   outline: none;
   transition: var(--transition);
 }
 .sim-input:focus {
   border-color: var(--saffron);
-  background: #FFF;
+  background: var(--bg-card);
   box-shadow: 0 0 0 4px var(--saffron-glow);
 }
-[data-theme="dark"] .sim-input:focus {
-  background: var(--bg-card);
-}
 .sim-clear-btn {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
   border-radius: 50%;
   border: 1.5px solid var(--glass-border);
-  background: var(--bg-surface);
+  background: var(--bg-card);
   color: var(--text-secondary);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 700;
   cursor: pointer;
   display: flex;
@@ -2168,15 +2172,15 @@ section[id], .section-padding[id], #home, #simulator, #services, #process, #calc
 .sim-cat-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
 }
 .sim-cat-chip {
-  padding: 7px 14px;
+  padding: 6px 12px;
   border-radius: var(--radius-full);
   border: 1px solid var(--glass-border);
-  background: var(--bg-surface);
+  background: var(--bg-card);
   color: var(--text-secondary);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 600;
   cursor: pointer;
   transition: var(--transition);
@@ -2185,26 +2189,25 @@ section[id], .section-padding[id], #home, #simulator, #services, #process, #calc
   background: var(--primary);
   border-color: var(--primary);
   color: #FFF;
+  font-weight: 700;
   box-shadow: 0 4px 12px var(--primary-glow);
 }
 .sim-mode-tabs {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 6px;
-  background: var(--bg-surface);
-  padding: 4px;
+  background: var(--bg-card);
+  padding: 6px;
   border-radius: var(--radius-md);
   border: 1px solid var(--glass-border);
 }
 .sim-mode-tab {
-  flex: 1 1 calc(33.33% - 6px);
-  min-width: 90px;
-  padding: 8px 10px;
+  padding: 8px 6px;
   border-radius: var(--radius-sm);
-  border: none;
+  border: 1px solid transparent;
   background: transparent;
   color: var(--text-secondary);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 700;
   cursor: pointer;
   text-align: center;
@@ -2212,33 +2215,37 @@ section[id], .section-padding[id], #home, #simulator, #services, #process, #calc
   white-space: nowrap;
 }
 .sim-mode-tab.active {
-  background: #FFF;
-  color: var(--text-primary);
+  background: var(--primary-bg);
+  color: var(--primary);
+  border-color: rgba(37, 99, 235, 0.3);
+  font-weight: 800;
   box-shadow: var(--shadow-sm);
 }
 [data-theme="dark"] .sim-mode-tab.active {
-  background: var(--bg-card);
-  color: #FFF;
+  background: rgba(37, 99, 235, 0.2);
+  color: #60A5FA;
 }
 .sim-cta-box {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding-top: 10px;
-  border-top: 1px solid var(--glass-border);
+  gap: 10px;
+  padding: 14px;
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--glass-border);
 }
 .sim-cta-box .btn-whatsapp {
   white-space: normal !important;
   line-height: 1.35;
   text-align: center;
-  padding: 11px 16px;
+  padding: 12px 16px;
   word-break: break-word;
 }
 .sim-cta-note {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
 }
 
@@ -3998,49 +4005,41 @@ section[id], .section-padding[id], #home, #simulator, #services, #process, #calc
     padding: 24px 0;
   }
   .simulator-wrapper {
-    padding: 14px;
+    padding: 16px 12px;
     border-radius: 16px;
     gap: 16px;
   }
+  .sim-controls-panel {
+    padding: 16px 12px;
+    gap: 16px;
+    border-radius: 14px;
+  }
   .sim-cat-chips {
     display: flex;
-    overflow-x: auto;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     gap: 6px;
-    padding-bottom: 6px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-  .sim-cat-chips::-webkit-scrollbar {
-    display: none;
+    width: 100%;
   }
   .sim-cat-chip {
-    flex-shrink: 0;
-    white-space: nowrap;
+    padding: 6px 10px;
     font-size: 0.76rem;
-    padding: 6px 12px;
   }
   .sim-mode-tabs {
-    display: flex;
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    gap: 6px;
-    padding-bottom: 6px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-  .sim-mode-tabs::-webkit-scrollbar {
-    display: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    width: 100%;
+    padding: 4px;
   }
   .sim-mode-tab {
-    flex-shrink: 0;
+    padding: 7px 4px;
+    font-size: 0.72rem;
     white-space: nowrap;
-    font-size: 0.78rem;
-    padding: 8px 12px;
+    text-align: center;
   }
   .sim-cta-box {
     margin-top: 10px;
-    padding: 12px 10px;
+    padding: 12px;
     background: var(--bg-surface);
     border-radius: 12px;
   }
