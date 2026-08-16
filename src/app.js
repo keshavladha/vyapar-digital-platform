@@ -463,18 +463,30 @@ function setupWATooltipTimer() {
 //  GLOBAL ACTIONS
 // ══════════════════════════════════════════════════════
 function setupGlobalActions() {
-  // Admin panel via keyboard shortcut (Ctrl+Shift+A) — hidden from navbar
+  // Admin panel via keyboard shortcut (Ctrl+Shift+A) or footer link
+  const triggerAdmin = () => {
+    const pin = prompt('Enter Admin PIN:');
+    if (pin === '1234') {
+      window.dispatchEvent(new CustomEvent('openAdminModal'));
+    } else if (pin !== null) {
+      alert('Incorrect PIN. Access Denied.');
+    }
+  };
+
   document.addEventListener('keydown', e => {
     if (e.ctrlKey && e.shiftKey && e.key === 'A') {
       e.preventDefault();
-      const pin = prompt('Enter Admin PIN:');
-      if (pin === '1234') {
-        window.dispatchEvent(new CustomEvent('openAdminModal'));
-      } else if (pin !== null) {
-        alert('Incorrect PIN. Access Denied.');
-      }
+      triggerAdmin();
     }
   });
+
+  const footerAdminLink = document.getElementById('footer-admin-link');
+  if (footerAdminLink) {
+    footerAdminLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      triggerAdmin();
+    });
+  }
 
   // Floating WhatsApp button
   const floatingWa = document.getElementById('floating-whatsapp-btn');
