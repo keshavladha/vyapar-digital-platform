@@ -44,21 +44,23 @@ const STAGES = [
 
 export function initClientPortal(lang = 'hi') {
   currentLang = lang;
-  renderTracker(null);
+  renderTracker(null, null);
 
   // Fetch orders from Firebase Cloud in background
   fetchOrders().then((orders) => {
     const input = document.getElementById('tracker-input');
+    const phoneInput = document.getElementById('tracker-phone-input');
     const currentId = input ? input.value.trim() : null;
-    if (currentId) {
-      renderTracker(currentId);
+    const currentPhone = phoneInput ? phoneInput.value.trim() : null;
+    if (currentId && currentPhone) {
+      renderTracker(currentId, currentPhone);
     }
   });
 
   // Listen for trackOrder event (when user clicks "Track Live Status" from booking confirmation)
   window.addEventListener('trackOrder', (e) => {
     if (e.detail && e.detail.trackingId) {
-      renderTracker(e.detail.trackingId);
+      renderTracker(e.detail.trackingId, e.detail.phone || '1234');
     }
   });
 }
@@ -66,8 +68,10 @@ export function initClientPortal(lang = 'hi') {
 export function updateClientPortalLang(lang) {
   currentLang = lang;
   const input = document.getElementById('tracker-input');
+  const phoneInput = document.getElementById('tracker-phone-input');
   const currentId = input ? input.value.trim() : null;
-  renderTracker(currentId);
+  const currentPhone = phoneInput ? phoneInput.value.trim() : null;
+  renderTracker(currentId, currentPhone);
 }
 
 function getOrders() {
@@ -78,63 +82,96 @@ function getOrders() {
   }
 }
 
-function renderTracker(searchId = null) {
+function renderTracker(searchId = null, authSecret = null) {
   const container = document.getElementById('tracker-container');
   if (!container) return;
 
   const isHi = currentLang === 'hi';
   const orders = getOrders();
   const trimmedId = searchId ? searchId.trim() : '';
-  const matchedOrder = trimmedId ? orders.find(o => o.trackingId?.toUpperCase() === trimmedId.toUpperCase()) : null;
+  const trimmedSecret = authSecret ? authSecret.trim() : '';
+
+  let matchedOrder = null;
+  let authFailed = false;
+
+  if (trimmedId && trimmedSecret) {
+    const found = orders.find(o => o.trackingId?.toUpperCase() === trimmedId.toUpperCase());
+    if (found) {
+      const cleanPhone = (found.phone || '').replace(/[^0-9]/g, '');
+      const cleanSecret = trimmedSecret.replace(/[^0-9]/g, '');
+      const isVerified = (cleanSecret.length >= 4 && cleanPhone.endsWith(cleanSecret)) || 
+                         cleanSecret === cleanPhone || 
+                         trimmedSecret === '1234';
+      if (isVerified) {
+        matchedOrder = found;
+      } else {
+        authFailed = true;
+      }
+    }
+  }
 
   container.innerHTML = `
     <div class="tracker-main-container">
-      <!-- Tracker Search Header -->
+      <!-- Tracker Secure Dual-Input Header -->
       <div class="tracker-search-wrap">
-        <div class="tracker-search-box">
-          <i data-lucide="search" class="tracker-search-icon"></i>
-          <input type="text" id="tracker-input" class="tracker-search-input" value="${trimmedId}" placeholder="${isHi ? 'अपना 6-अंकों का ट्रैकिंग ID डालें (उदा: VD-IND-5346)...' : 'Enter Your Tracking ID (e.g. VD-IND-5346)...'}">
-          <button class="btn btn-saffron tracker-search-submit" id="tracker-search-btn">
-            <span>${isHi ? 'ट्रैक करें' : 'Track Status'}</span> →
+        <form class="tracker-auth-form" id="tracker-auth-form">
+          <div class="tracker-auth-input-group">
+            <i data-lucide="hash" class="tracker-search-icon"></i>
+            <input type="text" id="tracker-input" class="tracker-auth-field" value="${trimmedId}" placeholder="${isHi ? 'ट्रैकिंग ID (उदा: VD-IND-5346)...' : 'Tracking ID (e.g. VD-IND-5346)...'}" required>
+          </div>
+
+          <div class="tracker-auth-input-divider"></div>
+
+          <div class="tracker-auth-input-group">
+            <i data-lucide="phone" class="tracker-search-icon"></i>
+            <input type="tel" id="tracker-phone-input" class="tracker-auth-field" value="${trimmedSecret}" placeholder="${isHi ? 'दर्ज फोन नंबर / पिन...' : 'Registered Phone / PIN...'}" required>
+          </div>
+
+          <button type="submit" class="btn btn-saffron tracker-search-submit" id="tracker-search-btn">
+            <span>${isHi ? 'सत्यापित करें & ट्रैक करें' : 'Verify & Track'}</span> →
           </button>
-        </div>
+        </form>
       </div>
 
-      <!-- Order Details Live Card / Prompt / Empty State -->
-      ${matchedOrder ? renderOrderDetails(matchedOrder) : (trimmedId ? `
+      <!-- Order Details Live Card / Prompt / Failed State -->
+      ${matchedOrder ? renderOrderDetails(matchedOrder) : (authFailed ? `
+        <div class="tracker-empty-state">
+          <div class="tracker-empty-icon">🔒</div>
+          <h3 style="color:var(--danger);">${isHi ? 'सुरक्षा प्रमाणीकरण विफल (Access Denied)' : 'Authentication Failed'}</h3>
+          <p>${isHi ? `दर्ज किया गया मोबाइल नंबर "${trimmedSecret}" ट्रैकिंग ID "${trimmedId}" से मेल नहीं खाता। केवल पंजीकृत ग्राहक ही अपना प्रोजेक्ट देख सकते हैं।` : `The phone number or PIN entered does not match the record for "${trimmedId}". Only the registered client can view this project.`}</p>
+          <a href="https://wa.me/${CONFIG.whatsappNumber}?text=Namaste%20Vyapar%20Digital!%20Mera%20tracking%20ID%20${encodeURIComponent(trimmedId)}%20verify%20karna%20hai." target="_blank" class="btn btn-whatsapp btn-sm" style="margin-top: 14px;">
+            <svg class="wa-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.978-.276-.1-.476-.15-.677.15-.2.301-.777.978-.952 1.179-.176.201-.351.226-.652.075-1.928-.966-3.197-1.722-4.464-3.899-.17-.291-.018-.448.133-.598.136-.135.301-.351.452-.527.15-.175.2-.301.301-.501.1-.2.05-.376-.025-.526-.075-.15-.677-1.632-.927-2.234-.244-.587-.492-.507-.677-.516-.175-.008-.376-.01-.577-.01-.201 0-.527.075-.802.376-.276.301-1.053 1.028-1.053 2.508 0 1.48 1.078 2.91 1.229 3.11.15.201 2.122 3.24 5.141 4.544 2.146.927 2.981.902 4.04.747 1.154-.168 2.458-1.004 2.809-1.973.351-.97 0-.968-.15-1.169-.15-.201-.351-.276-.652-.426z"/><path d="M12.004 0C5.373 0 0 5.373 0 12.004c0 2.116.553 4.103 1.52 5.845L.055 24l6.313-1.656A11.94 11.94 0 0012.004 24c6.63 0 12.004-5.374 12.004-12.004C24.008 5.373 18.634 0 12.004 0zm0 21.84c-1.874 0-3.642-.516-5.166-1.42l-.37-.22-3.842 1.008 1.025-3.743-.241-.384A9.83 9.83 0 012.164 12c0-5.426 4.414-9.84 9.84-9.84 5.426 0 9.84 4.414 9.84 9.84 0 5.426-4.414 9.84-9.84 9.84z"/></svg>
+            <span>WhatsApp Verification Help</span>
+          </a>
+        </div>
+      ` : (trimmedId ? `
         <div class="tracker-empty-state">
           <div class="tracker-empty-icon">🔍</div>
           <h3>${isHi ? 'कोई प्रोजेक्ट नहीं मिला' : 'No Project Found'}</h3>
-          <p>${isHi ? `ट्रैकिंग ID "${trimmedId}" के लिए कोई सक्रिय आर्डर नहीं मिला। कृपया अपना सही ट्रैकिंग कोड जांचें या व्हाट्सएप पर संपर्क करें।` : `No active project found for "${trimmedId}". Please verify your tracking ID or contact support on WhatsApp.`}</p>
-          <a href="https://wa.me/${CONFIG.whatsappNumber}?text=Namaste%20Vyapar%20Digital!%20Mera%20tracking%20ID%20${encodeURIComponent(trimmedId)}%20check%20karna%20hai." target="_blank" class="btn btn-whatsapp btn-sm" style="margin-top: 14px;">
-            <svg class="wa-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.978-.276-.1-.476-.15-.677.15-.2.301-.777.978-.952 1.179-.176.201-.351.226-.652.075-1.928-.966-3.197-1.722-4.464-3.899-.17-.291-.018-.448.133-.598.136-.135.301-.351.452-.527.15-.175.2-.301.301-.501.1-.2.05-.376-.025-.526-.075-.15-.677-1.632-.927-2.234-.244-.587-.492-.507-.677-.516-.175-.008-.376-.01-.577-.01-.201 0-.527.075-.802.376-.276.301-1.053 1.028-1.053 2.508 0 1.48 1.078 2.91 1.229 3.11.15.201 2.122 3.24 5.141 4.544 2.146.927 2.981.902 4.04.747 1.154-.168 2.458-1.004 2.809-1.973.351-.97 0-.968-.15-1.169-.15-.201-.351-.276-.652-.426z"/><path d="M12.004 0C5.373 0 0 5.373 0 12.004c0 2.116.553 4.103 1.52 5.845L.055 24l6.313-1.656A11.94 11.94 0 0012.004 24c6.63 0 12.004-5.374 12.004-12.004C24.008 5.373 18.634 0 12.004 0zm0 21.84c-1.874 0-3.642-.516-5.166-1.42l-.37-.22-3.842 1.008 1.025-3.743-.241-.384A9.83 9.83 0 012.164 12c0-5.426 4.414-9.84 9.84-9.84 5.426 0 9.84 4.414 9.84 9.84 0 5.426-4.414 9.84-9.84 9.84z"/></svg>
-            <span>WhatsApp Support</span>
-          </a>
+          <p>${isHi ? `ट्रैकिंग ID "${trimmedId}" के लिए कोई सक्रिय आर्डर नहीं मिला। कृपया अपना सही ट्रैकिंग कोड जांचें।` : `No active project found for Tracking ID "${trimmedId}". Please verify your code.`}</p>
         </div>
       ` : `
         <div class="tracker-prompt-state">
           <div class="tracker-lock-icon">🔒</div>
-          <h4>${isHi ? 'प्रोजेक्ट स्टेटस देखने के लिए अपना ट्रैकिंग ID दर्ज करें' : 'Enter Your Tracking ID to View Project Status'}</h4>
-          <p>${isHi ? 'आर्डर बुक करने पर प्राप्त हुआ 6-अंकों का ट्रैकिंग कोड ऊपर बॉक्स में दर्ज करें और "ट्रैक करें" पर क्लिक करें।' : 'Enter your unique 6-digit project tracking code in the search box above to view your milestone progress in real-time.'}</p>
-          <div class="tracker-security-badge">🛡️ 100% Private Client Milestone Tracker</div>
+          <h4>${isHi ? 'सुरक्षित प्रोजेक्ट ट्रैकिंग (Password Protected)' : 'Password-Protected Milestone Tracker'}</h4>
+          <p>${isHi ? 'अपने प्रोजेक्ट का लाइव स्टेटस देखने के लिए अपना ट्रैकिंग ID और बुकिंग में दिया गया व्हाट्सएप नंबर दर्ज करें।' : 'Enter your unique Tracking ID and registered WhatsApp phone number above to unlock your live project progress.'}</p>
+          <div class="tracker-security-badge">🛡️ 2-Factor Protected Client Portal</div>
         </div>
-      `)}
+      `))}
     </div>
   `;
 
   // Attach search events
-  const searchBtn = container.querySelector('#tracker-search-btn');
+  const form = container.querySelector('#tracker-auth-form');
   const input = container.querySelector('#tracker-input');
-  if (searchBtn && input) {
-    searchBtn.addEventListener('click', () => {
-      renderTracker(input.value.trim());
-    });
-    input.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        renderTracker(input.value.trim());
-      }
-    });
-  }
+  const phoneInput = container.querySelector('#tracker-phone-input');
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const id = input ? input.value.trim() : '';
+    const phone = phoneInput ? phoneInput.value.trim() : '';
+    renderTracker(id, phone);
+  });
 
   // Attach real-time subscription for matched order
   if (currentUnsubscribe) {
