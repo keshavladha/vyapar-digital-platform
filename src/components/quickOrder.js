@@ -52,15 +52,17 @@ function renderQuickOrder() {
       <div class="wizard-steps-header">
         <div class="wizard-step-indicator ${currentStep >= 1 ? 'active' : ''}">
           <div class="step-num">1</div>
-          <span>${currentLang === 'hi' ? 'सेवा का चयन' : 'Select Service'}</span>
+          <span class="step-txt">${currentLang === 'hi' ? 'सर्विस' : 'Service'}</span>
         </div>
+        <div class="wizard-step-divider"></div>
         <div class="wizard-step-indicator ${currentStep >= 2 ? 'active' : ''}">
           <div class="step-num">2</div>
-          <span>${currentLang === 'hi' ? 'व्यापार & संपर्क' : 'Business Info'}</span>
+          <span class="step-txt">${currentLang === 'hi' ? 'विवरण' : 'Details'}</span>
         </div>
+        <div class="wizard-step-divider"></div>
         <div class="wizard-step-indicator ${currentStep >= 3 ? 'active' : ''}">
           <div class="step-num">3</div>
-          <span>${currentLang === 'hi' ? 'पुष्टि & व्हाट्सएप' : 'Confirm & WhatsApp'}</span>
+          <span class="step-txt">${currentLang === 'hi' ? 'कन्फर्म' : 'Confirm'}</span>
         </div>
       </div>
 
