@@ -201,7 +201,7 @@ button, input, select, textarea {
   color: #CBD5E1;
 }
 
-.lang-switch {
+.top-bar .lang-switch {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -213,7 +213,7 @@ button, input, select, textarea {
   font-weight: 600;
 }
 
-.lang-btn {
+.top-bar .lang-btn {
   padding: 3px 8px;
   border-radius: var(--radius-full);
   border: none;
@@ -223,12 +223,12 @@ button, input, select, textarea {
   transition: var(--transition);
 }
 
-.lang-btn.active {
+.top-bar .lang-btn.active {
   background: var(--primary-light);
   color: #FFF;
 }
 
-.theme-toggle-btn {
+.top-bar .theme-toggle-btn {
   background: rgba(255, 255, 255, 0.12);
   border: none;
   border-radius: var(--radius-full);
@@ -243,8 +243,84 @@ button, input, select, textarea {
   transition: var(--transition);
 }
 
-.theme-toggle-btn:hover {
+.top-bar .theme-toggle-btn:hover {
   background: rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile Drawer Language & Theme Controls (High Contrast) */
+.mobile-drawer-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  padding: 10px 14px;
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.mobile-drawer-controls .lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 4px;
+}
+
+.mobile-drawer-controls .lang-btn {
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.mobile-drawer-controls .lang-btn:hover {
+  color: var(--primary);
+}
+
+.mobile-drawer-controls .lang-btn.active {
+  background: var(--primary);
+  color: #FFFFFF !important;
+  font-weight: 800;
+  box-shadow: 0 2px 8px rgba(30, 64, 175, 0.35);
+}
+
+.mobile-drawer-controls .theme-toggle-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  border-radius: var(--radius-full);
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.mobile-drawer-controls .theme-toggle-btn svg,
+.mobile-drawer-controls .theme-toggle-btn i {
+  color: var(--saffron);
+}
+
+[data-theme="dark"] .mobile-drawer-controls .theme-toggle-btn svg,
+[data-theme="dark"] .mobile-drawer-controls .theme-toggle-btn i {
+  color: #60A5FA;
+}
+
+.mobile-drawer-controls .theme-toggle-btn:hover {
+  border-color: var(--primary);
+  background: var(--bg-card-hover);
 }
 
 /* Global Scroll Margin for Anchor Links (Prevents Fixed Header Overlap) */
