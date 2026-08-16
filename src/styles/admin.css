@@ -1005,28 +1005,246 @@ body {
   border-color: var(--saffron);
 }
 
-/* Responsive */
+/* ══════════════════════════════════════════════════════
+   MOBILE & TABLET RESPONSIVE OPTIMIZATION
+══════════════════════════════════════════════════════ */
 @media (max-width: 1024px) {
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 }
 
 @media (max-width: 768px) {
-  .stats-grid {
-    grid-template-columns: 1fr;
+  .admin-header {
+    padding: 10px 14px;
   }
+
+  .admin-brand-group img {
+    height: 24px !important;
+  }
+
+  .admin-badge {
+    font-size: 0.65rem;
+    padding: 2px 7px;
+  }
+
+  /* Compact Header Action Buttons */
+  .sync-status span {
+    display: none;
+  }
+
+  .sync-status {
+    padding: 6px 8px;
+  }
+
+  .btn-header span {
+    display: none;
+  }
+
+  .btn-header {
+    padding: 7px 10px;
+    font-size: 0.8rem;
+  }
+
+  .admin-main {
+    padding: 14px;
+    gap: 14px;
+  }
+
+  /* Metrics 2x2 Grid */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .stat-card {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  .stat-icon-wrap {
+    width: 38px;
+    height: 38px;
+    font-size: 1.1rem;
+  }
+
+  .stat-val {
+    font-size: 1.25rem;
+  }
+
+  .stat-lbl {
+    font-size: 0.72rem;
+  }
+
+  /* Controls & Tabs Full-Width Stack */
+  .admin-controls-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .view-tabs {
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;
+    gap: 6px;
+  }
+
+  .tab-btn {
+    flex: 1;
+    min-width: max-content;
+    padding: 8px 12px;
+    font-size: 0.78rem;
+    justify-content: center;
+  }
+
+  .btn-add-project {
+    width: 100%;
+    justify-content: center;
+    padding: 11px 16px;
+    font-size: 0.85rem;
+  }
+
+  /* Swipeable Kanban Board (Snap Carousel) */
   .kanban-board {
     display: flex;
-    flex-direction: column;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 12px;
+    padding-bottom: 16px;
+    margin: 0 -14px;
+    padding-left: 14px;
+    padding-right: 14px;
   }
+
   .kanban-col {
-    width: 100%;
+    min-width: 82vw;
+    max-width: 82vw;
+    scroll-snap-align: center;
+    flex-shrink: 0;
   }
-  .admin-header {
-    padding: 12px 18px;
+
+  .kanban-col-header {
+    padding: 10px 12px;
   }
+
+  .col-title {
+    font-size: 0.84rem;
+  }
+
+  .col-count {
+    font-size: 0.72rem;
+    padding: 1px 7px;
+  }
+
+  .kanban-cards-list {
+    min-height: 80px;
+    gap: 10px;
+  }
+
+  .kanban-card {
+    padding: 12px;
+  }
+
+  /* Project Details Drawer (Bottom Sheet on Mobile) */
+  .drawer-overlay {
+    align-items: flex-end;
+  }
+
+  .project-drawer {
+    max-width: 100%;
+    max-height: 88vh;
+    border-radius: 20px 20px 0 0;
+    animation: slideUpMobile 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes slideUpMobile {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+  .drawer-header {
+    padding: 16px 20px;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .drawer-biz-title {
+    font-size: 1.15rem;
+  }
+
+  .drawer-body {
+    padding: 18px;
+    gap: 16px;
+  }
+
+  .drawer-info-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .drawer-info-item {
+    grid-column: span 1 !important;
+  }
+
+  /* Table Search & Controls on Mobile */
+  .table-header-controls {
+    padding: 12px 14px;
+  }
+
   .table-search-input {
     width: 100%;
+    font-size: 0.82rem;
+    padding: 8px 12px;
+  }
+
+  /* Modal Mobile Optimization */
+  .admin-modal-overlay {
+    padding: 12px;
+    align-items: flex-end;
+  }
+
+  .admin-modal-box {
+    padding: 20px 16px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .modal-title {
+    font-size: 1.15rem;
+  }
+
+  .modal-form-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .form-field-full {
+    grid-column: span 1;
+  }
+
+  .modal-input {
+    padding: 9px 12px;
+    font-size: 0.84rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .kanban-col {
+    min-width: 88vw;
+    max-width: 88vw;
+  }
+
+  .card-top {
+    font-size: 0.75rem;
+  }
+
+  .card-biz-name {
+    font-size: 0.95rem;
   }
 }
