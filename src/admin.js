@@ -15,9 +15,16 @@ let allQuotes = [];
 let currentView = 'kanban'; // 'kanban', 'table', 'quotes'
 
 // ═══════════════ BOOT ═══════════════
-document.addEventListener('DOMContentLoaded', () => {
+function boot() {
   initAdminAuth();
-});
+  if (window.lucide) window.lucide.createIcons();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', boot);
+} else {
+  boot();
+}
 
 // ═══════════════ AUTHENTICATION ═══════════════
 function initAdminAuth() {
@@ -40,6 +47,8 @@ function initAdminAuth() {
     sessionStorage.removeItem('vyapar_admin_auth');
     location.reload();
   });
+
+  if (window.lucide) window.lucide.createIcons();
 }
 
 function setupLoginForm() {
@@ -47,24 +56,31 @@ function setupLoginForm() {
   const pinInput = document.getElementById('admin-pin-input');
   const errorEl = document.getElementById('login-error');
 
-  form?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const pin = pinInput.value.trim();
+  const handleLogin = (e) => {
+    if (e) e.preventDefault();
+    const pin = pinInput ? pinInput.value.trim() : '';
 
     if (pin === ADMIN_PIN) {
       sessionStorage.setItem('vyapar_admin_auth', 'true');
-      document.getElementById('login-view').style.display = 'none';
-      document.getElementById('dashboard-view').style.display = 'flex';
+      const loginView = document.getElementById('login-view');
+      const dashboardView = document.getElementById('dashboard-view');
+      if (loginView) loginView.style.display = 'none';
+      if (dashboardView) dashboardView.style.display = 'flex';
       loadDashboard();
+      if (window.lucide) window.lucide.createIcons();
     } else {
       if (errorEl) {
         errorEl.style.display = 'block';
-        errorEl.textContent = '❌ गलत पिन! कृपया सही 4-अंकों का पिन डालें।';
+        errorEl.textContent = '❌ गलत पिन! कृपया सही 4-अंकों का पिन (1234) डालें।';
       }
-      pinInput.value = '';
-      pinInput.focus();
+      if (pinInput) {
+        pinInput.value = '';
+        pinInput.focus();
+      }
     }
-  });
+  };
+
+  form?.addEventListener('submit', handleLogin);
 }
 
 // ═══════════════ DASHBOARD CONTROLLER ═══════════════
