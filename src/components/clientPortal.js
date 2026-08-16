@@ -1,6 +1,7 @@
 // Vyapar Digital - Client Portal & Live Milestone Order Tracker (Sarvam.ai Style)
 import { CONFIG } from '../data/config.js';
 import { fetchOrders, subscribeToOrder, addOrderRevision } from '../services/firebase.js';
+import { notifyClientRevision } from '../services/emailService.js';
 
 let currentLang = 'hi';
 let currentUnsubscribe = null;
@@ -185,6 +186,10 @@ function renderTracker(searchId = null, authSecret = null) {
       }
 
       await addOrderRevision(matchedOrder.trackingId, note);
+
+      // Trigger Instant EmailJS Notification to Founder's Gmail
+      notifyClientRevision(matchedOrder, note);
+
       alert(isHi ? '✓ आपका बदलाव (Revision) दर्ज कर लिया गया है!' : '✓ Revision note submitted successfully!');
       renderTracker(matchedOrder.trackingId);
     });

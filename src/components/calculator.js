@@ -1,6 +1,7 @@
 // Vyapar Digital - Interactive Rate Calculator ("Apna Budget Chuniye")
 import { CONFIG } from '../data/config.js';
 import { saveQuoteLead } from '../services/firebase.js';
+import { notifyCalculatorQuote } from '../services/emailService.js';
 
 let currentLang = 'hi';
 let selectedBusinessType = 'shop';
@@ -166,13 +167,19 @@ function renderCalculator() {
     });
   });
 
-  // Save quote lead to Firebase on WhatsApp quote click
+  // Save quote lead to Firebase and send EmailJS alert on WhatsApp quote click
   container.querySelector('#calc-wa-quote-btn')?.addEventListener('click', () => {
+    const quotePayload = {
+      businessType: activeBizName,
+      estimatedTotal: total,
+      selectedServices: selectedItems.map(i => i.nameEn)
+    };
     saveQuoteLead({
       businessType: activeBizName,
       totalEstimatedPrice: total,
       selectedItems: selectedItems.map(i => i.nameEn)
     });
+    notifyCalculatorQuote(quotePayload);
   });
 
   // Handle Book Directly

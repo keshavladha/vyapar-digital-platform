@@ -1,6 +1,7 @@
 // Vyapar Digital - Quick Intake & Project Booking Wizard
 import { CONFIG } from '../data/config.js';
 import { saveOrder } from '../services/firebase.js';
+import { notifyNewOrder } from '../services/emailService.js';
 
 let currentLang = 'hi';
 let currentStep = 1;
@@ -272,6 +273,19 @@ function attachStepEvents(container) {
 
       // Save to Firebase Cloud & LocalStorage
       saveOrder(orderData);
+
+      // Trigger Instant EmailJS Notification to Founder's Gmail
+      notifyNewOrder({
+        id: orderData.trackingId,
+        trackingId: orderData.trackingId,
+        clientName: orderData.clientName,
+        businessName: orderData.businessName,
+        city: orderData.city,
+        clientPhone: orderData.phone,
+        packageName: orderData.packageName,
+        price: orderData.estimatedPrice,
+        notes: `GSTIN: ${orderData.gstin || 'None'}\nDetails: ${orderData.details || 'None'}`
+      });
 
       currentStep = 3;
       renderQuickOrder();
