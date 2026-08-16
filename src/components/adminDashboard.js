@@ -1,15 +1,22 @@
 // Vyapar Digital - Admin CRM & Agency Management Dashboard
+import { fetchOrders, updateOrderStage } from '../services/firebase.js';
+
 let currentLang = 'hi';
 
 export function initAdminDashboard(lang = 'hi') {
   currentLang = lang;
   renderAdminModal();
 
-  window.addEventListener('openAdminModal', () => {
+  window.addEventListener('openAdminModal', async () => {
     const modal = document.getElementById('admin-modal-overlay');
     if (modal) {
       modal.classList.add('active');
       renderAdminContent();
+      // Fetch fresh orders from Firebase
+      const freshOrders = await fetchOrders();
+      if (freshOrders && freshOrders.length) {
+        renderAdminContent();
+      }
     }
   });
 }
@@ -126,11 +133,23 @@ function renderAdminContent() {
 
   // Attach stage change events
   body.querySelectorAll('.admin-stage-select').forEach(sel => {
-    sel.addEventListener('change', (e) => {
+    sel.addEventListener('change', async (e) => {
       const idx = parseInt(sel.getAttribute('data-order-idx'), 10);
       const newStage = parseInt(e.target.value, 10);
-      orders[idx].stageIndex = newStage;
-      localStorage.setItem('vyapar_digital_orders', JSON.stringify(orders));
+      const targetOrder = orders[idx];
+      if (targetOrder) {
+        const stageNames = {
+          1: 'Order & Brief Received',
+          2: 'Draft & UI/UX Structure Ready',
+          3: 'Build & Full-Stack Development',
+          4: 'Client Review & Feedback',
+          5: 'Live & Delivered'
+        };
+        const statusText = stageNames[newStage] || 'In Progress';
+        targetOrder.stageIndex = newStage;
+        targetOrder.status = statusText;
+        await updateOrderStage(targetOrder.trackingId, newStage, statusText);
+      }
       renderAdminContent();
     });
   });

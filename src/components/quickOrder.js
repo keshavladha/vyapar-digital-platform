@@ -1,5 +1,6 @@
 // Vyapar Digital - Quick Intake & Project Booking Wizard
 import { CONFIG } from '../data/config.js';
+import { saveOrder } from '../services/firebase.js';
 
 let currentLang = 'hi';
 let currentStep = 1;
@@ -270,8 +271,8 @@ function attachStepEvents(container) {
       orderData.status = 'Discovery & Requirement Brief';
       orderData.stageIndex = 1; // 1 to 5
 
-      // Save to localStorage
-      saveOrderToLocalStorage(orderData);
+      // Save to Firebase Cloud & LocalStorage
+      saveOrder(orderData);
 
       currentStep = 3;
       renderQuickOrder();

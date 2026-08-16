@@ -1,7 +1,9 @@
 // Vyapar Digital - Client Portal & Live Milestone Order Tracker (Sarvam.ai Style)
 import { CONFIG } from '../data/config.js';
+import { fetchOrders, subscribeToOrder, addOrderRevision } from '../services/firebase.js';
 
 let currentLang = 'hi';
+let currentUnsubscribe = null;
 
 const DEFAULT_ORDERS = [
   {
@@ -44,6 +46,15 @@ export function initClientPortal(lang = 'hi') {
   currentLang = lang;
   seedInitialOrders();
   renderTracker();
+
+  // Fetch orders from Firebase Cloud
+  fetchOrders().then((orders) => {
+    if (orders && orders.length) {
+      const input = document.getElementById('tracker-input');
+      const currentId = input ? input.value : null;
+      renderTracker(currentId);
+    }
+  });
 
   // Listen for trackOrder event
   window.addEventListener('trackOrder', (e) => {
@@ -134,10 +145,29 @@ function renderTracker(searchId = 'VD-IND-8421') {
     });
   });
 
+  // Attach real-time subscription for matched order
+  if (currentUnsubscribe) {
+    currentUnsubscribe();
+    currentUnsubscribe = null;
+  }
+  if (matchedOrder && matchedOrder.trackingId) {
+    currentUnsubscribe = subscribeToOrder(matchedOrder.trackingId, (cloudOrder) => {
+      if (cloudOrder && cloudOrder.stageIndex !== undefined) {
+        const currentOrders = getOrders();
+        const idx = currentOrders.findIndex(o => o.trackingId === cloudOrder.trackingId);
+        if (idx !== -1 && (currentOrders[idx].stageIndex !== cloudOrder.stageIndex || currentOrders[idx].status !== cloudOrder.status)) {
+          currentOrders[idx] = { ...currentOrders[idx], ...cloudOrder };
+          localStorage.setItem('vyapar_digital_orders', JSON.stringify(currentOrders));
+          renderTracker(cloudOrder.trackingId);
+        }
+      }
+    });
+  }
+
   // Attach revision submit event
   const revBtn = container.querySelector('#submit-revision-btn');
   if (revBtn && matchedOrder) {
-    revBtn.addEventListener('click', () => {
+    revBtn.addEventListener('click', async () => {
       const revInput = container.querySelector('#revision-note-input');
       const note = revInput?.value.trim();
       if (!note) {
@@ -145,17 +175,7 @@ function renderTracker(searchId = 'VD-IND-8421') {
         return;
       }
 
-      if (!matchedOrder.revisions) matchedOrder.revisions = [];
-      matchedOrder.revisions.push(note);
-      
-      // Update in localStorage
-      const allOrders = getOrders();
-      const idx = allOrders.findIndex(o => o.trackingId === matchedOrder.trackingId);
-      if (idx !== -1) {
-        allOrders[idx] = matchedOrder;
-        localStorage.setItem('vyapar_digital_orders', JSON.stringify(allOrders));
-      }
-
+      await addOrderRevision(matchedOrder.trackingId, note);
       alert(isHi ? '✓ आपका बदलाव (Revision) दर्ज कर लिया गया है!' : '✓ Revision note submitted successfully!');
       renderTracker(matchedOrder.trackingId);
     });
