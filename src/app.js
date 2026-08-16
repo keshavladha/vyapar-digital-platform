@@ -488,6 +488,10 @@ function setupGlobalActions() {
     });
   }
 
+  if (window.location.hash === '#admin') {
+    setTimeout(triggerAdmin, 500);
+  }
+
   // Floating WhatsApp button
   const floatingWa = document.getElementById('floating-whatsapp-btn');
   if (floatingWa) {
