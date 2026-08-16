@@ -102,27 +102,33 @@ function restoreTheme() {
 }
 
 function setupThemeToggle() {
-  const themeBtn = document.getElementById('theme-toggle-btn');
-  if (!themeBtn) return;
+  const themeBtns = document.querySelectorAll('.theme-toggle-btn');
+  if (!themeBtns.length) return;
 
   let isDark = localStorage.getItem('vyapar_theme') === 'dark';
 
   function applyTheme() {
     if (isDark) {
       document.documentElement.setAttribute('data-theme', 'dark');
-      themeBtn.innerHTML = '<i data-lucide="moon" style="width:14px;height:14px;"></i><span id="theme-label">Dark</span>';
+      themeBtns.forEach(btn => {
+        btn.innerHTML = '<i data-lucide="moon" style="width:14px;height:14px;"></i><span>Dark</span>';
+      });
     } else {
       document.documentElement.removeAttribute('data-theme');
-      themeBtn.innerHTML = '<i data-lucide="sun" style="width:14px;height:14px;"></i><span id="theme-label">Light</span>';
+      themeBtns.forEach(btn => {
+        btn.innerHTML = '<i data-lucide="sun" style="width:14px;height:14px;"></i><span>Light</span>';
+      });
     }
     if (window.lucide) window.lucide.createIcons();
   }
 
   applyTheme();
-  themeBtn.addEventListener('click', () => {
-    isDark = !isDark;
-    localStorage.setItem('vyapar_theme', isDark ? 'dark' : 'light');
-    applyTheme();
+  themeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      isDark = !isDark;
+      localStorage.setItem('vyapar_theme', isDark ? 'dark' : 'light');
+      applyTheme();
+    });
   });
 }
 

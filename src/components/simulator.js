@@ -242,7 +242,7 @@ function renderScreenContent(data) {
 
         <!-- Web Hero -->
         <div class="web-mock-hero" style="background: radial-gradient(circle at 50% 0%, ${data.color}25 0%, #FFFFFF 100%);">
-          <div class="web-mock-rating">★★★★★ <span>4.9 (120+ Reviews)</span></div>
+          <div class="web-mock-rating">⭐ <span>${isHi ? 'प्रमाणित डिजिटल स्टोर' : 'Verified Digital Store'}</span></div>
           <h2 class="web-mock-h1">${shopTitle}</h2>
           <p class="web-mock-sub">${tagline}</p>
           <div class="web-mock-cta-row">
@@ -281,7 +281,7 @@ function renderScreenContent(data) {
           <div class="web-loc-title">📍 ${isHi ? 'दुकान का पता & समय' : 'Store Address & Timings'}</div>
           <div class="web-loc-desc">${isHi ? 'मेन मार्केट, मुख्य चौराहा — प्रातः 9:00 से रात्रि 9:00 बजे तक' : 'Main Market, Town Center — 9:00 AM to 9:00 PM'}</div>
           <div class="web-loc-badges">
-            <span class="web-loc-chip">Google Maps ⭐ 4.9</span>
+            <span class="web-loc-chip">Google Maps 📍</span>
             <span class="web-loc-chip">Verified Merchant ✓</span>
           </div>
         </div>
