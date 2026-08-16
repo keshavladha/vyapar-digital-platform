@@ -98,14 +98,14 @@ function renderTracker(searchId = null, authSecret = null) {
         <form class="tracker-auth-form" id="tracker-auth-form">
           <div class="tracker-auth-input-group">
             <i data-lucide="hash" class="tracker-search-icon"></i>
-            <input type="text" id="tracker-input" class="tracker-auth-field" value="${trimmedId}" placeholder="${isHi ? 'ट्रैकिंग ID (उदा: VD-IND-5346)...' : 'Tracking ID (e.g. VD-IND-5346)...'}" required>
+            <input type="text" id="tracker-input" class="tracker-auth-field" value="${trimmedId}" placeholder="${isHi ? 'अपना ट्रैकिंग ID दर्ज करें...' : 'Enter Tracking ID...'}" required>
           </div>
 
           <div class="tracker-auth-input-divider"></div>
 
           <div class="tracker-auth-input-group">
             <i data-lucide="phone" class="tracker-search-icon"></i>
-            <input type="tel" id="tracker-phone-input" class="tracker-auth-field" value="${trimmedSecret}" placeholder="${isHi ? 'दर्ज फोन नंबर / पिन...' : 'Registered Phone / PIN...'}" required>
+            <input type="tel" id="tracker-phone-input" class="tracker-auth-field" value="${trimmedSecret}" placeholder="${isHi ? 'पंजीकृत मोबाइल नंबर / पिन...' : 'Registered Phone / PIN...'}" required>
           </div>
 
           <button type="submit" class="btn btn-saffron tracker-search-submit" id="tracker-search-btn">
