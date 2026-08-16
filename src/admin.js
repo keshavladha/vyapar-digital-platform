@@ -260,6 +260,22 @@ function renderKanban() {
             </div>
           ` : ''}
 
+          ${order.revisions && order.revisions.length > 0 ? `
+            <div class="card-revisions-box">
+              <div class="rev-box-title">
+                <i data-lucide="bell-ring" style="width: 13px; height: 13px;"></i>
+                <span>Client Revision Request (${order.revisions.length})</span>
+              </div>
+              <div class="rev-items-list">
+                ${order.revisions.map((rev, i) => `
+                  <div class="rev-item">
+                    <span style="font-weight:700;color:var(--saffron);">#${i+1}:</span> ${rev}
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+
           <div class="card-actions">
             <select class="stage-select-dropdown" data-tid="${order.trackingId}">
               <option value="1" ${order.stageIndex === 1 ? 'selected' : ''}>1. Brief & Intake</option>
@@ -310,7 +326,7 @@ function renderTable() {
   );
 
   if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:36px;color:var(--text-muted);">No records found matching your search.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:36px;color:var(--text-muted);">No records found matching your search.</td></tr>`;
     return;
   }
 
@@ -339,6 +355,11 @@ function renderTable() {
             <option value="4" ${order.stageIndex === 4 ? 'selected' : ''}>4. Review</option>
             <option value="5" ${order.stageIndex === 5 ? 'selected' : ''}>5. Live ✅</option>
           </select>
+        </td>
+        <td>
+          ${order.revisions && order.revisions.length > 0 
+            ? `<span class="rev-badge" title="${order.revisions.join(' | ')}">⚡ ${order.revisions.length} Request${order.revisions.length > 1 ? 's' : ''}</span>` 
+            : `<span style="color:var(--text-muted);font-size:0.8rem;">None</span>`}
         </td>
         <td style="text-align: center;">
           <a href="https://wa.me/${waPhone}" target="_blank" class="card-wa-btn" style="margin: 0 auto;">

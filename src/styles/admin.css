@@ -588,10 +588,62 @@ body {
   background: var(--bg-card);
   padding: 6px 10px;
   border-radius: 6px;
-  border-left: 3px solid var(--saffron);
+  border-left: 3px solid var(--primary);
   max-height: 48px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* Revisions styling in Kanban Card */
+.card-revisions-box {
+  background: var(--saffron-bg);
+  border: 1px solid rgba(217, 119, 6, 0.3);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rev-box-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--saffron);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.rev-items-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.rev-item {
+  font-size: 0.78rem;
+  color: var(--text-primary);
+  background: var(--bg-card);
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  line-height: 1.4;
+}
+
+.rev-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--saffron-bg);
+  color: var(--saffron);
+  font-size: 0.74rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(217, 119, 6, 0.25);
 }
 
 .card-actions {
