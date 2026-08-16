@@ -1,0 +1,19 @@
+{
+  "name": "vyapar-digital-platform",
+  "version": "1.0.0",
+  "description": "Vyapar Digital - Dedicated Digital Studio for Local Businesses across India",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve -l 3000 .",
+    "start": "npx serve -l 3000 ."
+  },
+  "keywords": [
+    "vyapar-digital",
+    "website-builder",
+    "whatsapp-store",
+    "local-business-growth",
+    "digital-studio"
+  ],
+  "author": "Vyapar Digital",
+  "license": "MIT"
+}
