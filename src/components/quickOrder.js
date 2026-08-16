@@ -173,18 +173,17 @@ function renderCurrentStepContent() {
   if (currentStep === 3) {
     const trackingId = orderData.trackingId || 'VD-IND-' + Math.floor(1000 + Math.random() * 9000);
     
-    // Generate pre-filled WhatsApp link
+    // Generate natural customer WhatsApp message
     const waText = encodeURIComponent(
       `*Namaste Vyapar Digital!*\n\n` +
-      `Maine abhi website par naya project order submit kiya hai:\n\n` +
-      `📌 *Order Tracking ID:* ${trackingId}\n` +
-      `👤 *Name:* ${orderData.clientName}\n` +
-      `🏬 *Business:* ${orderData.businessName} (${orderData.city})\n` +
+      `Mujhe apne business ke liye project shuru karwana hai:\n\n` +
+      `👤 *Naam:* ${orderData.clientName}\n` +
+      `🏬 *Business / Dukan:* ${orderData.businessName}${orderData.city ? ` (${orderData.city})` : ''}\n` +
       `🛠️ *Service:* ${orderData.packageName}\n` +
       `💰 *Estimated Budget:* ₹${orderData.estimatedPrice.toLocaleString('en-IN')}\n` +
       (orderData.gstin ? `📄 *GSTIN:* ${orderData.gstin}\n` : '') +
-      (orderData.details ? `📝 *Notes:* ${orderData.details}\n` : '') +
-      `\nKripya is order ko verify karein aur bank/UPI details share karein.`
+      (orderData.details ? `📝 *Zaroorat / Details:* ${orderData.details}\n` : '') +
+      `\nKripya aage ka process batayein aur shuru karein.`
     );
     const waUrl = `https://wa.me/${CONFIG.whatsappNumber}?text=${waText}`;
 
