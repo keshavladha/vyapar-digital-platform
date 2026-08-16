@@ -1,5 +1,8 @@
-// Vyapar Digital - Firebase Cloud Firestore Service
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js';
+import { 
+  initializeAppCheck, 
+  ReCaptchaV3Provider 
+} from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-app-check.js';
 import { 
   getFirestore, 
   collection, 
@@ -11,7 +14,7 @@ import {
   onSnapshot, 
   serverTimestamp,
   arrayUnion,
-  query,
+  query, 
   orderBy 
 } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js';
 
@@ -25,14 +28,35 @@ export const firebaseConfig = {
   measurementId: "G-8RC1KPLH7S"
 };
 
+export const RECAPTCHA_SITE_KEY = "6LfI44gtAAAAAPN4RHSpzfJKDWPgMri3h_lh7i6i";
+
 export let app = null;
 export let db = null;
+export let appCheck = null;
 export let isFirebaseReady = false;
 
 try {
   app = initializeApp(firebaseConfig);
   db = getFirestore(app);
   isFirebaseReady = true;
+
+  // Initialize Firebase App Check with Google reCAPTCHA v3
+  if (typeof window !== 'undefined') {
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      window.FIREBASE_APPCHECK_DEBUG_TOKEN = true;
+    }
+
+    try {
+      appCheck = initializeAppCheck(app, {
+        provider: new ReCaptchaV3Provider(RECAPTCHA_SITE_KEY),
+        isTokenAutoRefreshEnabled: true
+      });
+      console.log('🛡️ Firebase App Check (reCAPTCHA v3) Active & Protecting Firestore');
+    } catch (appCheckErr) {
+      console.warn('App Check initialization notice:', appCheckErr);
+    }
+  }
+
   console.log('⚡ Firebase Cloud Firestore connected for Vyapar Digital');
 } catch (err) {
   console.warn('⚠️ Firebase init fallback to LocalStorage:', err);
