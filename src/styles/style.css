@@ -435,6 +435,25 @@ section[id], .section-padding[id], #home, #simulator, #services, #process, #calc
   background: linear-gradient(135deg, #10B981, #059669);
 }
 
+.wa-icon {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+  fill: currentColor;
+  width: 1.25em;
+  height: 1.25em;
+}
+
+.btn-sm .wa-icon {
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.btn-lg .wa-icon {
+  width: 1.35em;
+  height: 1.35em;
+}
+
 .btn-saffron {
   background: linear-gradient(135deg, var(--saffron), #B45309);
   color: #FFF;
