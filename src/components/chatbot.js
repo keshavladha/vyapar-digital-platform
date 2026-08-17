@@ -18,6 +18,14 @@ export function updateChatbotLang(lang) {
   if (triggerText) {
     triggerText.textContent = 'Saarthi';
   }
+  const headerTitle = document.querySelector('.chatbot-header-title');
+  if (headerTitle) {
+    headerTitle.textContent = lang === 'hi' ? 'Saarthi — डिजिटल गाइड' : 'Saarthi — Digital Guide';
+  }
+  const input = document.getElementById('chatbot-input');
+  if (input) {
+    input.placeholder = lang === 'hi' ? 'Saarthi से पूछें या ट्रैकिंग ID लिखें...' : 'Ask Saarthi or enter tracking ID...';
+  }
 }
 
 function renderChatbotContainer() {
@@ -53,7 +61,7 @@ function renderChatbotContainer() {
             🤖
           </div>
           <div>
-            <div class="chatbot-header-title">Saarthi — डिजिटल गाइड</div>
+            <div class="chatbot-header-title">${currentLang === 'hi' ? 'Saarthi — डिजिटल गाइड' : 'Saarthi — Digital Guide'}</div>
             <div class="chatbot-header-sub">Vyapar Digital • Online</div>
           </div>
         </div>
