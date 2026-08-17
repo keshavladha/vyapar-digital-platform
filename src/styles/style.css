@@ -876,17 +876,15 @@ section[id], .section-padding[id], #home, #simulator, #services, #process, #calc
   border-color: rgba(96, 165, 250, 0.35);
 }
 
-/* ⚡ BHIM UPI & RuPay Payment Badge */
+/* ⚡ Official NPCI UPI Chevron Badge */
 .badge-upi {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.14), rgba(6, 182, 212, 0.18));
-  color: #059669;
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  box-shadow: 0 3px 10px rgba(16, 185, 129, 0.14);
+  background: #FFFFFF;
+  border: 1px solid rgba(9, 121, 57, 0.3);
+  box-shadow: 0 3px 10px rgba(9, 121, 57, 0.12);
 }
 [data-theme="dark"] .badge-upi {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(6, 182, 212, 0.25));
-  color: #34D399;
-  border-color: rgba(52, 211, 153, 0.35);
+  background: #1E293B;
+  border-color: rgba(9, 121, 57, 0.4);
 }
 
 /* 🔒 256-Bit SSL Bank-Grade Security Shield Badge */
