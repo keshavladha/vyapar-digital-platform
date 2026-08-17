@@ -8,6 +8,8 @@ export const CONFIG = {
   whatsappNumber: "917027340360", // User WhatsApp number
   supportEmail: "namaste@vyapardigital.in",
   supportPhone: "+91 70273 40360",
+  instagramHandle: "vyapar_digital_",
+  instagramUrl: "https://www.instagram.com/vyapar_digital_/",
   officeLocation: "Serving Across India (Tier 1, Tier 2 & Tier 3 Towns)",
   
   // Real Service Commitments (Zero False Claims)
