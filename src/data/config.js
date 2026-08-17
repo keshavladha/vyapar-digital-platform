@@ -328,20 +328,20 @@ export const CONFIG = {
     }
   ],
 
-  // Portfolio & Client Showcase (Verified Live Client Work)
+  // Portfolio & Client Showcase (Verified Real Client Work)
   caseStudies: [
     {
       id: "cs-windson",
       isLive: true,
-      clientName: "Windson Motor (विंडसन मोटर)",
+      clientName: "Windson Motor (विंडसन मोटर - Electric Vehicles)",
       category: "web-dev",
-      city: "Automobile & Spare Parts",
-      headline: "Official Custom Business Website + Complete Social Media (Instagram & Facebook) Growth",
-      headlineHi: "ऑफिशियल कस्टम वेबसाइट + इंस्टाग्राम और फेसबुक सोशल मीडिया मैनेजमेंट",
-      serviceUsed: "Full Website + Instagram & FB Management",
-      metrics: ["Official Web Portal Live", "@windsonmotor Social Media", "Lead & Catalog Integration"],
-      conceptDescHi: "विंडसन मोटर के लिए आधिकारिक वेबसाइट (www.windsonmotor.com) का निर्माण एवं उनके इंस्टाग्राम व फेसबुक (@windsonmotor) का संपूर्ण डिजिटल मैनेजमेंट।",
-      conceptDescEn: "Built official web portal (www.windsonmotor.com) and managing their full social media brand presence across Instagram & Facebook (@windsonmotor).",
+      city: "Electric Scooters & EV Mobility",
+      headline: "Official Electric Vehicle (EV) Web Portal & Complete Social Media Growth",
+      headlineHi: "ऑफिशियल इलेक्ट्रिक व्हीकल (EV) वेब पोर्टल और सोशल मीडिया मैनेजमेंट",
+      serviceUsed: "Full EV Web Portal + Instagram & FB Management",
+      metrics: ["70 KM Range* Showcase", "Lithium Battery Tech Portal", "@windsonmotor Social Presence"],
+      conceptDescHi: "विंडसन मोटर (Windson Motor) के इलेक्ट्रिक स्कूटर्स (Drifty, Styler, Venice) के लिए ऑफिशियल वेब पोर्टल (www.windsonmotor.com) का निर्माण एवं उनके इंस्टाग्राम व फेसबुक (@windsonmotor) का संपूर्ण डिजिटल मैनेजमेंट।",
+      conceptDescEn: "Custom official web portal (www.windsonmotor.com) for Windson Motor's electric scooter lineup and full social media branding across Instagram & Facebook (@windsonmotor).",
       owner: "सत्यापित लाइव क्लाइंट (Verified Live Client)",
       liveUrl: "https://www.windsonmotor.com",
       instagramUrl: "https://www.instagram.com/windsonmotor/",
