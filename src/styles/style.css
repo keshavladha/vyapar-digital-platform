@@ -4513,8 +4513,8 @@ section[id], .section-padding[id], #home, #simulator, #services, #process, #calc
 .legal-modal-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 18px 24px;
+  align-items: flex-start;
+  padding: 20px 24px;
   border-bottom: 1px solid var(--border);
   background: var(--bg-surface);
 }
@@ -4522,14 +4522,14 @@ section[id], .section-padding[id], #home, #simulator, #services, #process, #calc
 .legal-modal-title-wrap {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .legal-modal-icon-badge {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(30, 64, 175, 0.12);
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(30, 64, 175, 0.1);
   color: var(--primary);
   display: flex;
   align-items: center;
@@ -4543,19 +4543,20 @@ section[id], .section-padding[id], #home, #simulator, #services, #process, #calc
 }
 
 .legal-modal-title {
-  font-size: 1.15rem;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
   font-weight: 800;
   color: var(--text-primary);
   margin: 0;
   line-height: 1.2;
 }
 
-.legal-modal-updated {
-  font-size: 0.74rem;
-  color: var(--text-muted);
+.legal-modal-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
   font-weight: 600;
   display: block;
-  margin-top: 2px;
+  margin-top: 3px;
 }
 
 .legal-modal-close-btn {
@@ -4568,9 +4569,10 @@ section[id], .section-padding[id], #home, #simulator, #services, #process, #calc
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
+  font-size: 0.95rem;
   cursor: pointer;
   transition: var(--transition);
+  margin-left: 12px;
 }
 
 .legal-modal-close-btn:hover {
@@ -4579,59 +4581,48 @@ section[id], .section-padding[id], #home, #simulator, #services, #process, #calc
   border-color: var(--primary);
 }
 
-/* Tabs */
-.legal-modal-tabs {
-  display: flex;
-  gap: 6px;
-  padding: 10px 20px;
-  background: var(--bg-surface);
-  border-bottom: 1px solid var(--border);
-  overflow-x: auto;
-}
-
-.legal-tab-btn {
-  padding: 6px 14px;
-  border-radius: var(--radius-full);
-  border: 1px solid transparent;
-  background: transparent;
-  color: var(--text-secondary);
-  font-size: 0.8rem;
-  font-weight: 700;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: var(--transition);
-}
-
-.legal-tab-btn:hover {
-  color: var(--text-primary);
-  background: var(--bg-card);
-}
-
-.legal-tab-btn.active {
-  background: var(--primary);
-  color: #FFFFFF !important;
-  box-shadow: 0 2px 8px rgba(30, 64, 175, 0.35);
-}
-
-/* Body */
+/* Body (Scrollable, Clean Document Layout) */
 .legal-modal-body {
-  padding: 22px 24px;
+  padding: 24px 28px;
   overflow-y: auto;
   flex: 1;
-  font-size: 0.88rem;
-  line-height: 1.7;
+  font-size: 0.9rem;
+  line-height: 1.75;
   color: var(--text-secondary);
+}
+
+.legal-modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+.legal-modal-body::-webkit-scrollbar-track {
+  background: var(--bg-surface);
+}
+.legal-modal-body::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 4px;
 }
 
 .legal-section {
-  margin-bottom: 20px;
+  margin-bottom: 22px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+}
+
+[data-theme="dark"] .legal-section {
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+.legal-section:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
 }
 
 .legal-section h4 {
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .legal-section p {
@@ -4644,7 +4635,7 @@ section[id], .section-padding[id], #home, #simulator, #services, #process, #calc
 }
 
 .legal-section li {
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 /* Footer */
@@ -4652,14 +4643,14 @@ section[id], .section-padding[id], #home, #simulator, #services, #process, #calc
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 24px;
+  padding: 14px 28px;
   border-top: 1px solid var(--border);
   background: var(--bg-surface);
   gap: 12px;
 }
 
 .legal-modal-founder-note {
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
 }
 
@@ -4670,6 +4661,9 @@ section[id], .section-padding[id], #home, #simulator, #services, #process, #calc
   }
   .legal-modal-header {
     padding: 14px 18px;
+  }
+  .legal-modal-title {
+    font-size: 1.1rem;
   }
   .legal-modal-body {
     padding: 16px 18px;

@@ -1,4 +1,4 @@
-// Vyapar Digital - Legal Policies Modal (Privacy, Terms, Refund)
+// Vyapar Digital - Clean Dedicated Legal Modals (Separate & Standalone)
 import { CONFIG } from '../data/config.js';
 
 let activePolicy = 'privacy';
@@ -6,8 +6,10 @@ let currentLang = 'hi';
 
 const LEGAL_CONTENT = {
   privacy: {
-    titleHi: "गोपनीयता नीति (Privacy Policy)",
+    titleHi: "गोपनीयता नीति",
     titleEn: "Privacy Policy",
+    subtitleHi: "व्यापार डिजिटल द्वारा आपके डेटा की 100% सुरक्षा का वचन",
+    subtitleEn: "Vyapar Digital's commitment to protect your personal and business data",
     icon: "shield-check",
     updatedHi: "अंतिम अपडेट: 17 अगस्त 2026",
     updatedEn: "Last Updated: 17 August 2026",
@@ -21,7 +23,7 @@ const LEGAL_CONTENT = {
         <h4>2. एकत्रित की जाने वाली जानकारी</h4>
         <p>हम केवल वही जानकारी प्राप्त करते हैं जो आप स्वेच्छा से हमें प्रदान करते हैं:</p>
         <ul>
-          <li><strong>संपर्क विवरण:</strong> आपका नाम, व्हाट्सएप फोन नंबर, ईमेल आईडी (यदि उपलब्ध हो)।</li>
+          <li><strong>संपर्क विवरण:</strong> आपका नाम, व्हाट्सएप फोन नंबर, ईमेल आईडी।</li>
           <li><strong>व्यावसायिक विवरण:</strong> आपकी दुकान/संस्थान का नाम, कार्य का प्रकार, शहर/पता, और प्रोजेक्ट आवश्यकताएं।</li>
           <li><strong>प्रोजेक्ट फाइल्स:</strong> आपके द्वारा भेजी गई लोगो, फोटो, रेट लिस्ट, मेनू और वीडियो।</li>
         </ul>
@@ -29,7 +31,7 @@ const LEGAL_CONTENT = {
 
       <div class="legal-section">
         <h4>3. जानकारी का उपयोग</h4>
-        <p>आपकी जानकारी का उपयोग विशेष रूप से निम्नलिखित उद्देश्यों के लिए किया जाता है:</p>
+        <p>आपकी जानकारी का उपयोग केवल निम्नलिखित कार्यों के लिए किया जाता है:</p>
         <ul>
           <li>आपकी वेबसाइट, व्हाट्सएप स्टोर, मोबाइल ऐप या पोस्टर्स तैयार करना।</li>
           <li>व्हाट्सएप या ईमेल के माध्यम से प्रोजेक्ट ड्राफ्ट और डिलीवरी स्टेटस अपडेट भेजना।</li>
@@ -47,9 +49,9 @@ const LEGAL_CONTENT = {
         <h4>5. संपर्क सूत्र</h4>
         <p>यदि इस गोपनीयता नीति के संबंध में आपका कोई प्रश्न है, तो आप सीधे हमारे संस्थापक से संपर्क कर सकते हैं:</p>
         <p><strong>संस्थापक:</strong> केशव लड्ढा (Keshav Ladha)<br>
-        <strong>ईमेल:</strong> <a href="mailto:keshavladha24@gmail.com" style="color:var(--primary-light);">keshavladha24@gmail.com</a><br>
+        <strong>ईमेल:</strong> <a href="mailto:keshavladha24@gmail.com" style="color:var(--primary);">keshavladha24@gmail.com</a><br>
         <strong>व्हाट्सएप:</strong> +91 70273 40360<br>
-        <strong>पता:</strong> ऐलनाबाद (125102), सिरसा, हरियाणा, भारत</p>
+        <strong>कार्यालय:</strong> ऐलनाबाद (125102), सिरसा, हरियाणा, भारत</p>
       </div>
     `,
     bodyEn: `
@@ -88,15 +90,17 @@ const LEGAL_CONTENT = {
         <h4>5. Contact Us</h4>
         <p>For any privacy queries or data removal requests, contact the founder directly:</p>
         <p><strong>Founder:</strong> Keshav Ladha<br>
-        <strong>Email:</strong> <a href="mailto:keshavladha24@gmail.com" style="color:var(--primary-light);">keshavladha24@gmail.com</a><br>
+        <strong>Email:</strong> <a href="mailto:keshavladha24@gmail.com" style="color:var(--primary);">keshavladha24@gmail.com</a><br>
         <strong>WhatsApp:</strong> +91 70273 40360<br>
         <strong>Address:</strong> Ellenabad (125102), Sirsa, Haryana, India</p>
       </div>
     `
   },
   terms: {
-    titleHi: "सेवा की शर्तें (Terms of Service)",
+    titleHi: "सेवा की शर्तें",
     titleEn: "Terms of Service",
+    subtitleHi: "पारदर्शी नियम, स्पष्ट समय-सीमा एवं कार्य सिद्धांत",
+    subtitleEn: "Transparent milestones, timelines, and operational standards",
     icon: "file-text",
     updatedHi: "अंतिम अपडेट: 17 अगस्त 2026",
     updatedEn: "Last Updated: 17 August 2026",
@@ -172,8 +176,10 @@ const LEGAL_CONTENT = {
     `
   },
   refund: {
-    titleHi: "रिफंड & कैंसिलेशन नीति (Refund Policy)",
+    titleHi: "रिफंड & कैंसिलेशन नीति",
     titleEn: "Refund & Cancellation Policy",
+    subtitleHi: "100% संतुष्टि गारंटी — काम देखने के बाद ही पूरा भुगतान",
+    subtitleEn: "100% satisfaction guarantee with transparent refund standards",
     icon: "refresh-cw",
     updatedHi: "अंतिम अपडेट: 17 अगस्त 2026",
     updatedEn: "Last Updated: 17 August 2026",
@@ -194,7 +200,7 @@ const LEGAL_CONTENT = {
 
       <div class="legal-section">
         <h4>3. रिफंड प्रक्रिया</h4>
-        <p>रिफंड का अनुरोध करने के लिए आप सीधे <a href="mailto:keshavladha24@gmail.com" style="color:var(--primary-light);">keshavladha24@gmail.com</a> पर ईमेल भेज सकते हैं या व्हाट्सएप <strong>+91 70273 40360</strong> पर संपर्क कर सकते हैं। स्वीकृत रिफंड 2 से 3 कार्य दिवसों के भीतर आपके मूल UPI/बैंक खाते में वापस कर दिया जाता है।</p>
+        <p>रिफंड का अनुरोध करने के लिए आप सीधे <a href="mailto:keshavladha24@gmail.com" style="color:var(--primary);">keshavladha24@gmail.com</a> पर ईमेल भेज सकते हैं या व्हाट्सएप <strong>+91 70273 40360</strong> पर संपर्क कर सकते हैं। स्वीकृत रिफंड 2 से 3 कार्य दिवसों के भीतर आपके मूल UPI/बैंक खाते में वापस कर दिया जाता है।</p>
       </div>
     `,
     bodyEn: `
@@ -214,7 +220,7 @@ const LEGAL_CONTENT = {
 
       <div class="legal-section">
         <h4>3. Refund Processing</h4>
-        <p>To request a refund or cancellation, email <a href="mailto:keshavladha24@gmail.com" style="color:var(--primary-light);">keshavladha24@gmail.com</a> or WhatsApp <strong>+91 70273 40360</strong>. Approved refunds are credited back to your original UPI/bank account within 2–3 business days.</p>
+        <p>To request a refund or cancellation, email <a href="mailto:keshavladha24@gmail.com" style="color:var(--primary);">keshavladha24@gmail.com</a> or WhatsApp <strong>+91 70273 40360</strong>. Approved refunds are credited back to your original UPI/bank account within 2–3 business days.</p>
       </div>
     `
   }
@@ -239,7 +245,7 @@ function renderModalContainer() {
   const modalMarkup = `
     <div id="legal-modal-backdrop" class="legal-modal-backdrop" aria-hidden="true">
       <div class="legal-modal-card" role="dialog" aria-modal="true">
-        <!-- Header -->
+        <!-- Clean Dedicated Header -->
         <div class="legal-modal-header">
           <div class="legal-modal-title-wrap">
             <div class="legal-modal-icon-badge" id="legal-modal-icon-badge">
@@ -247,40 +253,24 @@ function renderModalContainer() {
             </div>
             <div>
               <h3 id="legal-modal-title" class="legal-modal-title">गोपनीयता नीति</h3>
-              <span id="legal-modal-updated" class="legal-modal-updated">अंतिम अपडेट: 17 अगस्त 2026</span>
+              <span id="legal-modal-subtitle" class="legal-modal-subtitle"></span>
             </div>
           </div>
           <button id="legal-modal-close" class="legal-modal-close-btn" aria-label="Close dialog">✕</button>
         </div>
 
-        <!-- Navigation Tabs -->
-        <div class="legal-modal-tabs">
-          <button class="legal-tab-btn active" data-tab="privacy">
-            <span class="tab-hi">🔒 गोपनीयता नीति</span>
-            <span class="tab-en">🔒 Privacy Policy</span>
-          </button>
-          <button class="legal-tab-btn" data-tab="terms">
-            <span class="tab-hi">📜 सेवा की शर्तें</span>
-            <span class="tab-en">📜 Terms of Service</span>
-          </button>
-          <button class="legal-tab-btn" data-tab="refund">
-            <span class="tab-hi">🔄 रिफंड नीति</span>
-            <span class="tab-en">🔄 Refund Policy</span>
-          </button>
-        </div>
-
-        <!-- Body Content -->
+        <!-- Body Content (Always resets to top) -->
         <div id="legal-modal-body" class="legal-modal-body">
           <!-- Populated dynamically -->
         </div>
 
-        <!-- Footer -->
+        <!-- Clean Footer -->
         <div class="legal-modal-footer">
           <div class="legal-modal-founder-note">
             🏛️ <strong>Vyapar Digital</strong> • Founder: Keshav Ladha (Ellenabad, Sirsa)
           </div>
           <button id="legal-modal-action-close" class="btn btn-primary btn-sm">
-            <span class="btn-hi">समझ गया (Close)</span>
+            <span class="btn-hi">बंद करें (Close)</span>
             <span class="btn-en">Close</span>
           </button>
         </div>
@@ -289,15 +279,6 @@ function renderModalContainer() {
   `;
 
   document.body.insertAdjacentHTML('beforeend', modalMarkup);
-
-  // Tab switching
-  const tabs = document.querySelectorAll('.legal-tab-btn');
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const policy = tab.getAttribute('data-tab');
-      switchTab(policy);
-    });
-  });
 
   // Close triggers
   const closeBtn = document.getElementById('legal-modal-close');
@@ -334,7 +315,12 @@ export function openLegalModal(policyType = 'privacy') {
   const backdrop = document.getElementById('legal-modal-backdrop');
   if (!backdrop) return;
 
-  switchTab(policyType);
+  activePolicy = policyType;
+  renderPolicyContent(policyType);
+
+  // Always reset scroll to the very top so section 1 is cleanly visible
+  const bodyEl = document.getElementById('legal-modal-body');
+  if (bodyEl) bodyEl.scrollTop = 0;
 
   backdrop.classList.add('active');
   backdrop.setAttribute('aria-hidden', 'false');
@@ -352,49 +338,23 @@ export function closeLegalModal() {
   document.body.style.overflow = '';
 }
 
-function switchTab(policyType) {
-  activePolicy = policyType;
-
-  // Update tab buttons active state
-  document.querySelectorAll('.legal-tab-btn').forEach(btn => {
-    if (btn.getAttribute('data-tab') === policyType) {
-      btn.classList.add('active');
-    } else {
-      btn.classList.remove('active');
-    }
-  });
-
-  renderPolicyContent(policyType);
-}
-
 function renderPolicyContent(policyType) {
-  const data = LEGAL_CONTENT[policyType];
-  if (!data) return;
+  const data = LEGAL_CONTENT[policyType] || LEGAL_CONTENT.privacy;
 
   const titleEl = document.getElementById('legal-modal-title');
-  const updatedEl = document.getElementById('legal-modal-updated');
+  const subtitleEl = document.getElementById('legal-modal-subtitle');
   const bodyEl = document.getElementById('legal-modal-body');
   const iconBadge = document.getElementById('legal-modal-icon-badge');
 
   const isHi = currentLang === 'hi';
 
   if (titleEl) titleEl.textContent = isHi ? data.titleHi : data.titleEn;
-  if (updatedEl) updatedEl.textContent = isHi ? data.updatedHi : data.updatedEn;
+  if (subtitleEl) subtitleEl.textContent = isHi ? data.subtitleHi : data.subtitleEn;
   if (bodyEl) bodyEl.innerHTML = isHi ? data.bodyHi : data.bodyEn;
 
   if (iconBadge) {
     iconBadge.innerHTML = `<i data-lucide="${data.icon}"></i>`;
   }
-
-  // Update tab labels visibility according to current language
-  document.querySelectorAll('.legal-tab-btn').forEach(tab => {
-    const hiSpan = tab.querySelector('.tab-hi');
-    const enSpan = tab.querySelector('.tab-en');
-    if (hiSpan && enSpan) {
-      hiSpan.style.display = isHi ? 'inline' : 'none';
-      enSpan.style.display = isHi ? 'none' : 'inline';
-    }
-  });
 
   const closeHi = document.querySelector('#legal-modal-action-close .btn-hi');
   const closeEn = document.querySelector('#legal-modal-action-close .btn-en');
