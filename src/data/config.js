@@ -6,7 +6,7 @@ export const CONFIG = {
   taglineEn: "Grow Your Local Business into a Digital Powerhouse",
   subTagline: "Websites • Mobile Apps • Festival Posters • Instagram Reels",
   whatsappNumber: "917027340360", // User WhatsApp number
-  supportEmail: "namaste@vyapardigital.in",
+  supportEmail: "keshavladha24@gmail.com",
   supportPhone: "+91 70273 40360",
   instagramHandle: "vyapar_digital_",
   instagramUrl: "https://www.instagram.com/vyapar_digital_/",

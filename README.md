@@ -62,6 +62,8 @@ This repository is pre-configured for **1-click Vercel deployment**:
 
 ## 📞 Direct Contact
 
+- **Founder**: Keshav Ladha
 - **WhatsApp & Call**: `+91 70273 40360`
-- **Email**: `namaste@vyapardigital.in`
+- **Email**: `keshavladha24@gmail.com`
+- **Instagram**: `@vyapar_digital_`
 - **Hours**: Monday – Saturday | 9:00 AM – 7:00 PM IST
