@@ -16,7 +16,7 @@ export function updateChatbotLang(lang) {
   currentLang = lang;
   const triggerText = document.getElementById('chatbot-trigger-text');
   if (triggerText) {
-    triggerText.textContent = lang === 'hi' ? 'सारथि AI' : 'Saarthi AI';
+    triggerText.textContent = lang === 'hi' ? 'सारथि' : 'Saarthi';
   }
 }
 
@@ -203,11 +203,11 @@ function processBotResponse(query) {
 
   // 1. Order Tracking by ID (e.g., VD-2026-XXXX or any tracking format)
   const trackingMatch = q.match(/vd[-\s]?\d{4}[-\s]?\d{3,5}/i) || (q.includes('track') && q.match(/\d{4,}/));
-  
+
   if (trackingMatch) {
     const rawId = trackingMatch[0].toUpperCase().replace(/\s/g, '-');
     const status = lookupTrackingId(rawId);
-    
+
     if (status) {
       botReply = `📦 **ऑर्डर ट्रैकिंग स्टेटस (Order Found):**\n\n` +
         `• **ID:** \`${status.id}\`\n` +
