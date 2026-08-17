@@ -471,6 +471,57 @@ section[id], .section-padding[id], #home, #simulator, #services, #process, #calc
   flex-shrink: 0;
 }
 
+/* Direct Visible Navbar Language Switcher */
+.nav-lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 3px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  flex-shrink: 0;
+}
+
+.nav-lang-switch .lang-btn {
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  line-height: 1.2;
+}
+
+.nav-lang-switch .lang-btn:hover {
+  color: var(--text-primary);
+}
+
+.nav-lang-switch .lang-btn.active {
+  background: var(--primary);
+  color: #FFFFFF !important;
+  font-weight: 800;
+  box-shadow: 0 2px 6px rgba(30, 64, 175, 0.35);
+}
+
+[data-theme="dark"] .nav-lang-switch {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="dark"] .nav-lang-switch .lang-btn {
+  color: #CBD5E1;
+}
+
+[data-theme="dark"] .nav-lang-switch .lang-btn.active {
+  background: #2563EB;
+  color: #FFFFFF !important;
+}
+
 /* Buttons (Pill Aesthetic) */
 .btn {
   display: inline-flex;
@@ -4068,19 +4119,44 @@ section[id], .section-padding[id], #home, #simulator, #services, #process, #calc
   .nav-links {
     display: none;
   }
+  .nav-actions {
+    gap: 6px !important;
+  }
+  .nav-lang-switch {
+    padding: 2px !important;
+  }
+  .nav-lang-switch .lang-btn {
+    padding: 3px 8px !important;
+    font-size: 0.72rem !important;
+  }
   .hamburger-btn {
     display: flex !important;
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
   }
   .brand-logo-img {
-    height: 30px;
-    max-width: 145px;
+    height: 28px;
+    max-width: 130px;
   }
   #nav-whatsapp-btn {
-    padding: 6px 14px;
-    font-size: 0.8rem;
+    padding: 5px 10px;
+    font-size: 0.78rem;
     border-radius: var(--radius-full);
+  }
+  @media (max-width: 480px) {
+    .nav-wa-text {
+      display: none;
+    }
+    #nav-whatsapp-btn {
+      padding: 6px !important;
+      width: 32px !important;
+      height: 32px !important;
+      justify-content: center !important;
+    }
+    .brand-logo-img {
+      height: 26px;
+      max-width: 120px;
+    }
   }
 
   /* Hero Section mobile */
