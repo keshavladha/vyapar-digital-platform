@@ -364,7 +364,7 @@ function goToSlide(idx) {
 function startCarousel() {
   if (carouselInterval) clearInterval(carouselInterval);
   carouselInterval = setInterval(() => {
-    const next = (carouselIndex + 1) % TESTIMONIALS.length;
+    const next = (carouselIndex + 1) % WORK_PRINCIPLES.length;
     goToSlide(next);
   }, 4000);
 }

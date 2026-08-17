@@ -473,7 +473,7 @@ section[id], .section-padding[id], #home, #simulator, #services, #process, #calc
 
 /* Direct Visible Navbar Language Switcher */
 .nav-lang-switch {
-  display: inline-flex;
+  display: none; /* Hidden on desktop — top-bar has its own switcher */
   align-items: center;
   gap: 2px;
   background: var(--bg-surface);
@@ -4123,6 +4123,7 @@ section[id], .section-padding[id], #home, #simulator, #services, #process, #calc
     gap: 6px !important;
   }
   .nav-lang-switch {
+    display: inline-flex !important; /* Show on mobile — top-bar is hidden */
     padding: 2px !important;
   }
   .nav-lang-switch .lang-btn {
