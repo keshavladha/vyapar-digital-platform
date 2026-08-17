@@ -7,6 +7,7 @@ import { initQuickOrder, updateQuickOrderLang } from './components/quickOrder.js
 import { initClientPortal, updateClientPortalLang } from './components/clientPortal.js';
 import { initAdminDashboard, updateAdminLang } from './components/adminDashboard.js';
 import { initSimulator, updateSimulatorLang } from './components/simulator.js';
+import { initLegalModal, updateLegalModalLang } from './components/legalModal.js';
 
 let currentLang = 'hi'; // Default Hindi for Tier 3
 
@@ -29,6 +30,7 @@ function initApp() {
   initQuickOrder(currentLang);
   initClientPortal(currentLang);
   initAdminDashboard(currentLang);
+  initLegalModal(currentLang);
 
   // Setup all interactions
   setupLanguageSwitcher();
@@ -73,6 +75,7 @@ function setupLanguageSwitcher() {
       updateQuickOrderLang(currentLang);
       updateClientPortalLang(currentLang);
       updateAdminLang(currentLang);
+      updateLegalModalLang(currentLang);
       renderFAQs();
       renderTestimonials();
 
