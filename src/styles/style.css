@@ -878,13 +878,27 @@ section[id], .section-padding[id], #home, #simulator, #services, #process, #calc
 
 /* ⚡ Official NPCI UPI Chevron Badge */
 .badge-upi {
-  background: #FFFFFF;
-  border: 1px solid rgba(9, 121, 57, 0.3);
-  box-shadow: 0 3px 10px rgba(9, 121, 57, 0.12);
+  background: var(--bg-subtle);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  padding: 6px;
 }
+
+.upi-trust-icon {
+  width: 32px;
+  height: auto;
+  max-height: 22px;
+  object-fit: contain;
+  display: block;
+}
+
 [data-theme="dark"] .badge-upi {
-  background: #1E293B;
-  border-color: rgba(9, 121, 57, 0.4);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="dark"] .upi-trust-icon {
+  filter: brightness(1.25) contrast(1.1);
 }
 
 /* 🔒 256-Bit SSL Bank-Grade Security Shield Badge */
