@@ -291,10 +291,10 @@ const WORK_PRINCIPLES = [
     color: '#059669', badge: 'Fast Turnaround'
   },
   {
-    titleHi: '🛡️ 50% काम पसंद आने पर भुगतान', titleEn: '🛡️ 50% Balance After Your Approval',
+    titleHi: '🛡️ सिर्फ 20% एडवांस — बाकी 80% काम पसंद आने पर', titleEn: '🛡️ Only 20% Advance — 80% Balance After Approval',
     roleHi: 'पारदर्शी & सुरक्षित प्रक्रिया', roleEn: 'Risk-Free Transparent Payment',
-    textHi: '50% एडवांस से कार्य की शुरुआत होती है, और बाकी 50% का भुगतान केवल तब करना होता है जब आप फाइनल काम देखकर पूरी तरह संतुष्ट हों।',
-    textEn: '50% advance to initiate the build, and the remaining 50% only after you review and approve the final work. Zero risk, total transparency.',
+    textHi: 'सिर्फ 20% टोकन एडवांस से कार्य की शुरुआत होती है, और बाकी 80% का भुगतान केवल तब करना होता है जब आप फाइनल काम देखकर पूरी तरह संतुष्ट हों।',
+    textEn: 'Just 20% advance to initiate the build, and the remaining 80% only after you review and approve the final work. Zero risk, total transparency.',
     color: '#D97706', badge: 'Zero Risk'
   },
   {

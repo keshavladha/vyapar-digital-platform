@@ -17,7 +17,7 @@ export const CONFIG = {
     { number: "48 Hr", labelEn: "Fast First Draft Delivery", labelHi: "48 घंटे में पहला ड्राफ्ट तैयार" },
     { number: "1-on-1", labelEn: "Direct Founder Communication", labelHi: "सीधे फाउंडर से डायरेक्ट सपोर्ट" },
     { number: "₹1,999", labelEn: "Transparent Starting Pricing", labelHi: "₹1,999 से पारदर्शी शुरुआती प्लान" },
-    { number: "50%", labelEn: "Pay Balance After Approval", labelHi: "50% संतुष्टि के बाद भुगतान" }
+    { number: "20%", labelEn: "Only 20% Advance to Start", labelHi: "सिर्फ 20% एडवांस से शुरुआत" }
   ],
 
   // 4 Core Service Pillars
@@ -401,8 +401,8 @@ export const CONFIG = {
     {
       qEn: "What are your payment terms?",
       qHi: "पेमेंट की क्या शर्तें हैं?",
-      aEn: "We work with complete transparency: 50% advance to initiate the project, and the remaining 50% only after you review and approve the final draft.",
-      aHi: "हम पूरी ईमानदारी से काम करते हैं: काम शुरू करने के लिए 50% एडवांस, और बाकी 50% काम पूरा देखने और संतुष्ट होने के बाद।"
+      aEn: "We work with complete transparency: only 20% token advance to initiate the project, and the remaining 80% only after you review and approve the final draft.",
+      aHi: "हम पूरी ईमानदारी से काम करते हैं: काम शुरू करने के लिए सिर्फ 20% टोकन एडवांस, और बाकी 80% काम पूरा देखने और संतुष्ट होने के बाद।"
     },
     {
       qEn: "How do I share photos, videos, and details with you?",

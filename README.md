@@ -25,7 +25,7 @@
   - ⚡ 48-Hour first draft turnaround
   - 🤝 1-on-1 direct founder support
   - 💰 Starting transparent pricing from ₹1,999
-  - 🛡️ 50% pay after approval
+  - 🛡️ Only 20% advance, 80% pay after approval
 - 🌐 **Bilingual (हिन्दी / English)**: Dynamic one-click language switcher with preserved brand identity.
 - 🌓 **Day & Night Themes**: Elegant light mode and sleek dark mode.
 - 📱 **Mobile First**: High-conversion responsive design tailored for smartphones.

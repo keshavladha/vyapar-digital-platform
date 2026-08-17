@@ -123,8 +123,8 @@ const LEGAL_CONTENT = {
       <div class="legal-section">
         <h4>3. भुगतान शर्तें (Transparent Pricing)</h4>
         <ul>
-          <li>काम शुरू करने के लिए 50% अग्रिम (Advance) भुगतान आवश्यक है।</li>
-          <li>शेष 50% भुगतान ग्राहक द्वारा लाइव ड्राफ्ट की समीक्षा करने और पूर्ण संतुष्ट होने के बाद देय है।</li>
+          <li>काम शुरू करने के लिए सिर्फ 20% टोकन अग्रिम (Advance) भुगतान आवश्यक है।</li>
+          <li>शेष 80% भुगतान ग्राहक द्वारा लाइव ड्राफ्ट की समीक्षा करने और पूर्ण संतुष्ट होने के बाद देय है।</li>
           <li>कोई छुपा हुआ शुल्क (No Hidden Charges) नहीं है।</li>
         </ul>
       </div>
@@ -158,8 +158,8 @@ const LEGAL_CONTENT = {
       <div class="legal-section">
         <h4>3. Payment Terms</h4>
         <ul>
-          <li>50% advance to initiate architecture and development.</li>
-          <li>Remaining 50% balance payable only after you inspect and approve the live working draft.</li>
+          <li>Only 20% token advance to initiate architecture and development.</li>
+          <li>Remaining 80% balance payable only after you inspect and approve the live working draft.</li>
           <li>No hidden fees, no recurring surprises.</li>
         </ul>
       </div>
@@ -193,7 +193,7 @@ const LEGAL_CONTENT = {
         <h4>2. कैंसिलेशन और रिफंड के नियम</h4>
         <ul>
           <li><strong>काम शुरू होने से पहले:</strong> यदि आप बुकिंग के 12 घंटे के भीतर प्रोजेक्ट रद्द करते हैं (डिजाइन कार्य शुरू होने से पहले), तो आपका 100% अग्रिम तुरंत रिफंड कर दिया जाएगा।</li>
-          <li><strong>ड्राफ्ट देखने के बाद:</strong> यदि पहला ड्राफ्ट आपकी अपेक्षाओं के अनुरूप नहीं है, तो हम प्राथमिकता के आधार पर दोबारा नया डिजाइन बनाते हैं। यदि फिर भी आप संतुष्ट नहीं होते हैं, तो आपको शेष 50% भुगतान करने की कोई आवश्यकता नहीं है।</li>
+          <li><strong>ड्राफ्ट देखने के बाद:</strong> यदि पहला ड्राफ्ट आपकी अपेक्षाओं के अनुरूप नहीं है, तो हम प्राथमिकता के आधार पर दोबारा नया डिजाइन बनाते हैं। यदि फिर भी आप संतुष्ट नहीं होते हैं, तो आपको शेष 80% भुगतान करने की कोई आवश्यकता नहीं है।</li>
           <li><strong>अंतिम डिलीवरी के बाद:</strong> एक बार जब वेबसाइट लाइव हो जाती है, डोमेन ट्रांसफर हो जाता है या फाइनल सोर्स फाइल्स डिलीवर हो जाती हैं, तो डिजिटल सेवाओं के स्वभाव के कारण रिफंड संभव नहीं होगा।</li>
         </ul>
       </div>
@@ -213,7 +213,7 @@ const LEGAL_CONTENT = {
         <h4>2. Cancellation & Refund Rules</h4>
         <ul>
           <li><strong>Pre-Development Cancellation:</strong> If you request cancellation within 12 hours of booking prior to commencement, 100% of the deposit is refunded immediately.</li>
-          <li><strong>Draft Review Stage:</strong> If the initial draft requires changes, we revise it with top priority. If you still choose not to proceed, you are under zero obligation to pay the remaining 50% balance.</li>
+          <li><strong>Draft Review Stage:</strong> If the initial draft requires changes, we revise it with top priority. If you still choose not to proceed, you are under zero obligation to pay the remaining 80% balance.</li>
           <li><strong>Post-Delivery Stage:</strong> Once final deliverables (domain setup, custom source code, high-resolution master graphics) are transferred and made live, refunds cannot be issued due to the nature of digital intellectual property.</li>
         </ul>
       </div>
