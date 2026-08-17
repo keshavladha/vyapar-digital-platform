@@ -1,4 +1,4 @@
-// Vyapar Digital - Personal Chatbot (Vyapar Mitra / व्यापार मित्र)
+// Vyapar Digital - Personal Chatbot (Saarthi / सारथि)
 import { CONFIG } from '../data/config.js';
 
 let currentLang = 'hi';
@@ -16,7 +16,7 @@ export function updateChatbotLang(lang) {
   currentLang = lang;
   const triggerText = document.getElementById('chatbot-trigger-text');
   if (triggerText) {
-    triggerText.textContent = lang === 'hi' ? 'सहायता' : 'AI Help';
+    triggerText.textContent = lang === 'hi' ? 'सारथि AI' : 'Saarthi AI';
   }
 }
 
@@ -30,7 +30,7 @@ function renderChatbotContainer() {
 
   container.innerHTML = `
     <!-- Floating Trigger Button -->
-    <div id="chatbot-trigger-btn" class="chatbot-trigger-btn" title="Vyapar Mitra - AI Assistant">
+    <div id="chatbot-trigger-btn" class="chatbot-trigger-btn" title="सारथि (Saarthi) - AI Digital Guide">
       <div class="chatbot-avatar-pulse"></div>
       <div class="chatbot-avatar-icon">
         <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -40,7 +40,7 @@ function renderChatbotContainer() {
           <path d="M9.5 13.5c.8.6 2.2.6 3 0"></path>
         </svg>
       </div>
-      <span class="chatbot-badge-text" id="chatbot-trigger-text">${currentLang === 'hi' ? 'सहायता' : 'AI Help'}</span>
+      <span class="chatbot-badge-text" id="chatbot-trigger-text">${currentLang === 'hi' ? 'सारथि AI' : 'Saarthi AI'}</span>
     </div>
 
     <!-- Chatbot Window Modal -->
@@ -53,7 +53,7 @@ function renderChatbotContainer() {
             🤖
           </div>
           <div>
-            <div class="chatbot-header-title">व्यापार मित्र (AI Assistant)</div>
+            <div class="chatbot-header-title">सारथि (Saarthi) — AI गाइड</div>
             <div class="chatbot-header-sub">Vyapar Digital • Online</div>
           </div>
         </div>
@@ -84,7 +84,7 @@ function renderChatbotContainer() {
           type="text" 
           id="chatbot-input" 
           class="chatbot-input-field" 
-          placeholder="${currentLang === 'hi' ? 'अपना सवाल पूछें या ट्रैकिंग ID लिखें...' : 'Ask a question or enter tracking ID...'}" 
+          placeholder="${currentLang === 'hi' ? 'सारथि से पूछें या ट्रैकिंग ID लिखें...' : 'Ask Saarthi or enter tracking ID...'}" 
           autocomplete="off"
         >
         <button type="submit" class="chatbot-send-btn" aria-label="Send">
@@ -99,8 +99,8 @@ function initInitialMessage() {
   messages = [
     {
       sender: 'bot',
-      textHi: 'नमस्ते! 🙏 मैं **व्यापार मित्र** हूँ — Vyapar Digital का AI सहायक।\n\nमैं आपकी वेबसाइट, मोबाइल ऐप, त्यौहार पोस्टर्स, रेट्स जानने या आपके प्रोजेक्ट को ट्रैक करने में मदद कर सकता हूँ। बताएं, मैं आपकी क्या सहायता करूँ?',
-      textEn: 'Namaste! 🙏 I am **Vyapar Mitra** — AI Digital Assistant for Vyapar Digital.\n\nI can help you explore website & app pricing, estimate costs, track your ongoing project, or connect you directly with our founder Keshav Ladha. How can I help you today?',
+      textHi: 'नमस्ते! 🙏 मैं **सारथि (Saarthi)** हूँ — Vyapar Digital का AI डिजिटल मार्गदर्शक।\n\nमैं आपकी दुकान व व्यापार के लिए सही डिजिटल पैकेज चुनने, रेट्स जानने, प्रोजेक्ट ट्रैक करने या सीधे हमारे संस्थापक **केशव लड्ढा** से कनेक्ट करने में मदद करूँगा। बताएं, आज क्या सहायता करूँ?',
+      textEn: 'Namaste! 🙏 I am **Saarthi** — your AI Digital Guide at Vyapar Digital.\n\nI can help you explore website & app pricing, estimate costs, track your ongoing project, or connect you directly with our founder Keshav Ladha. How can I guide you today?',
       time: getCurrentTime()
     }
   ];
