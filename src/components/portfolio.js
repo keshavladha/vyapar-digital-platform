@@ -28,18 +28,22 @@ function renderPortfolio() {
         const conceptDesc = currentLang === 'hi' ? item.conceptDescHi : item.conceptDescEn;
         
         return `
-          <div class="portfolio-card" style="max-width: 720px; width: 100%; border: 1.5px solid var(--primary-light); box-shadow: 0 12px 36px rgba(30, 64, 175, 0.08);">
-            <div class="portfolio-img-wrap" style="background: linear-gradient(135deg, #1E3A8A 0%, #0F172A 100%);">
-              <!-- Visual Mockup Placeholder / Header Graphic -->
-              <div style="text-align: center; color: var(--text-secondary); padding: 28px 20px;">
-                <div style="width: 56px; height: 56px; border-radius: 14px; background: rgba(255, 255, 255, 0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; border: 1px solid rgba(255, 255, 255, 0.2);">
-                  <i data-lucide="globe" style="width: 28px; height: 28px; color: #60A5FA;"></i>
+          <div class="portfolio-card" style="max-width: 840px; width: 100%; border: 1.5px solid var(--primary-light); box-shadow: 0 16px 44px rgba(30, 64, 175, 0.12); border-radius: 20px; overflow: hidden;">
+            <div class="portfolio-img-wrap" style="position: relative; height: 340px; overflow: hidden; background: #0B0F19;">
+              <img src="src/assets/windson-showcase.jpg" alt="Windson Motor Official Website and Social Media Showcase" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;" loading="eager">
+              <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.4) 45%, rgba(0,0,0,0.15) 100%);"></div>
+              
+              <div style="position: absolute; bottom: 18px; left: 22px; right: 22px; display: flex; justify-content: space-between; align-items: flex-end;">
+                <div>
+                  <div style="font-weight: 900; font-size: 1.45rem; color: #FFFFFF; text-shadow: 0 2px 8px rgba(0,0,0,0.7);">${item.clientName}</div>
+                  <div style="font-size: 0.88rem; color: var(--saffron-light); font-weight: 700; text-shadow: 0 1px 4px rgba(0,0,0,0.7); margin-top: 2px;">${item.serviceUsed}</div>
                 </div>
-                <div style="font-weight: 900; font-size: 1.35rem; color: #FFFFFF; letter-spacing: -0.01em;">${item.clientName}</div>
-                <div style="font-size: 0.85rem; color: var(--saffron-light); font-weight: 700; margin-top: 4px;">${item.serviceUsed}</div>
               </div>
-              <span class="badge badge-saffron portfolio-badge" style="font-weight: 800; font-size: 0.78rem;">⭐ ${currentLang === 'hi' ? 'लाइव प्रोजेक्ट' : 'Live Client Project'}</span>
-              <span class="portfolio-city"><i data-lucide="tag" style="width: 12px; height: 12px; display: inline-block; vertical-align: middle;"></i> ${item.city}</span>
+
+              <span class="badge badge-saffron portfolio-badge" style="position: absolute; top: 16px; left: 16px; font-weight: 800; font-size: 0.8rem; box-shadow: 0 4px 12px rgba(0,0,0,0.35);">⭐ ${currentLang === 'hi' ? 'लाइव क्लाइंट प्रोजेक्ट' : 'Live Client Project'}</span>
+              <span class="portfolio-city" style="position: absolute; top: 16px; right: 16px; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(8px); color: #FFF; border: 1px solid rgba(255,255,255,0.25); padding: 5px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+                <i data-lucide="tag" style="width: 12px; height: 12px; display: inline-block; vertical-align: middle;"></i> ${item.city}
+              </span>
             </div>
 
             <div class="portfolio-body" style="padding: 24px;">
