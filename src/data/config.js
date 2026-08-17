@@ -328,7 +328,7 @@ export const CONFIG = {
     }
   ],
 
-  // Portfolio & Client Showcase (Real Client Work & Functional Prototypes)
+  // Portfolio & Client Showcase (Verified Live Client Work)
   caseStudies: [
     {
       id: "cs-windson",
@@ -346,62 +346,6 @@ export const CONFIG = {
       liveUrl: "https://www.windsonmotor.com",
       instagramUrl: "https://www.instagram.com/windsonmotor/",
       facebookUrl: "https://www.facebook.com/windsonmotor"
-    },
-    {
-      id: "cs-sweets",
-      isLive: false,
-      clientName: "मिठाई & किराना स्टोर (डेमो मॉडल)",
-      category: "web-dev",
-      city: "WhatsApp Store & Catalog Concept",
-      headline: "WhatsApp Store Catalog with Instant 1-Click Ordering & Zero Commissions",
-      headlineHi: "व्हाट्सएप कैटलॉग वेबसाइट — बिना किसी कमीशन सीधे ग्राहकों से आर्डर पाएं",
-      serviceUsed: "WhatsApp Catalog Store + Festival Posts",
-      metrics: ["Direct WhatsApp Checkout", "Mobile-First Design", "UPI QR Integrated"],
-      conceptDescHi: "दुकानदार अपने 50+ प्रोडक्ट्स की फोटो, रेट और वेरायटी दिखा सकते हैं। ग्राहक सीधे व्हाट्सएप पर कार्ट बनाकर आर्डर भेज सकते हैं।",
-      conceptDescEn: "Showcase 50+ products with pricing and photos. Customers can add items to cart and order directly on WhatsApp.",
-      owner: "डिजाइन टेम्पलेट & फंक्शनल प्रोटोटाइप"
-    },
-    {
-      id: "cs-coaching",
-      isLive: false,
-      clientName: "कोचिंग & डिफेंस एकेडमी (डेमो मॉडल)",
-      category: "app-build",
-      city: "Android Mobile App Concept",
-      headline: "Custom Android App for Online Test Series, Batches & Student Notes",
-      headlineHi: "स्टूडेंट लर्निंग ऐप — ऑनलाइन टेस्ट सीरीज, रिकॉर्डेड क्लासेज & सुरक्षित नोट्स",
-      serviceUsed: "Coaching Android App + YouTube Video Editing",
-      metrics: ["Online Mock Tests", "PDF Notes Protection", "Student OTP Login"],
-      conceptDescHi: "टीचर्स और कोचिंग संस्थान अपने नाम का खुद का ऐप बनवा सकते हैं जिसमें छात्र टेस्ट दे सकें और ऑनलाइन फीस भर सकें।",
-      conceptDescEn: "Teachers and academies get their own branded app for mock tests, lectures, and digital fee collection.",
-      owner: "डिजाइन टेम्पलेट & फंक्शनल प्रोटोटाइप"
-    },
-    {
-      id: "cs-gym",
-      isLive: false,
-      clientName: "जिम & फिटनेस सेंटर (डेमो मॉडल)",
-      category: "video-edit",
-      city: "Viral Instagram Reels Concept",
-      headline: "High-Energy Reels & Offer Promos to Attract Local Members",
-      headlineHi: "हाई-एनर्जी प्रोमो रील्स — लोकल शहर में नए ग्राहकों और मेंबर्स को आकर्षित करें",
-      serviceUsed: "10 Viral Reels Pack + Shop Flex Banners",
-      metrics: ["Trending Audio Sync", "Hindi Subtitles", "Shop Showcase Cuts"],
-      conceptDescHi: "जिम, रेस्टोरेंट या सैलून के लिए आकर्षक शॉर्ट वीडियो रील्स, जिससे इंस्टाग्राम पर लोकल ऑडियंस तक सीधा प्रचार पहुंचे।",
-      conceptDescEn: "High-converting short-form videos with trending beats and local appeal for Instagram and Facebook.",
-      owner: "डिजाइन टेम्पलेट & फंक्शनल प्रोटोटाइप"
-    },
-    {
-      id: "cs-jewellers",
-      isLive: false,
-      clientName: "ज्वेलर्स & फैशन शोरूम (डेमो मॉडल)",
-      category: "graphic-design",
-      city: "Festival Poster & Brand Identity",
-      headline: "Custom Festival Posters & Branding Kit for WhatsApp Status & Social Media",
-      headlineHi: "त्यौहार स्पेशल पोस्टर्स & ब्रांडिंग किट — दुकान के नाम और लोगो के साथ",
-      serviceUsed: "Monthly Festival Poster Retainer + Logo Kit",
-      metrics: ["HD WhatsApp Status Size", "Shop Logo Embedded", "Festival Offer Banners"],
-      conceptDescHi: "हर त्यौहार (दीवाली, होली, धनतेरस) पर दुकान के नाम और नंबर वाले सुंदर पोस्टर्स, जिन्हें आप सीधे स्टेटस पर लगा सकें।",
-      conceptDescEn: "Branded festive greeting posters created specifically with your shop details for WhatsApp and Instagram status.",
-      owner: "डिजाइन टेम्पलेट & फंक्शनल प्रोटोटाइप"
     }
   ],
 
