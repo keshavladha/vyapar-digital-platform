@@ -8,6 +8,7 @@ import { initClientPortal, updateClientPortalLang } from './components/clientPor
 import { initAdminDashboard, updateAdminLang } from './components/adminDashboard.js';
 import { initSimulator, updateSimulatorLang } from './components/simulator.js';
 import { initLegalModal, updateLegalModalLang } from './components/legalModal.js';
+import { initChatbot, updateChatbotLang } from './components/chatbot.js';
 
 let currentLang = 'hi'; // Default Hindi for Tier 3
 
@@ -31,6 +32,7 @@ function initApp() {
   initClientPortal(currentLang);
   initAdminDashboard(currentLang);
   initLegalModal(currentLang);
+  initChatbot(currentLang);
 
   // Setup all interactions
   setupLanguageSwitcher();
@@ -76,6 +78,7 @@ function setupLanguageSwitcher() {
       updateClientPortalLang(currentLang);
       updateAdminLang(currentLang);
       updateLegalModalLang(currentLang);
+      updateChatbotLang(currentLang);
       renderFAQs();
       renderTestimonials();
 
