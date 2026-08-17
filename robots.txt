@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /admin
+
+# Host
+Host: https://vyapardigital.vercel.app
+
+# Sitemaps
+Sitemap: https://vyapardigital.vercel.app/sitemap.xml
