@@ -8,7 +8,7 @@ import { initClientPortal, updateClientPortalLang } from './components/clientPor
 import { initAdminDashboard, updateAdminLang } from './components/adminDashboard.js';
 import { initSimulator, updateSimulatorLang } from './components/simulator.js';
 import { initLegalModal, updateLegalModalLang } from './components/legalModal.js';
-import { initChatbot, updateChatbotLang } from './components/chatbot.js';
+import { initChatbot, updateChatbotLang } from './components/chatbot.js?v=2.2.0';
 
 let currentLang = 'hi'; // Default Hindi for Tier 3
 
