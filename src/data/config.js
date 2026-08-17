@@ -9,8 +9,8 @@ export const CONFIG = {
   supportEmail: "keshavladha24@gmail.com",
   supportPhone: "+91 70273 40360",
   instagramHandle: "vyapar_digital_",
-  instagramUrl: "https://www.instagram.com/vyapar_digital_/",
-  officeLocation: "Serving Across India (Tier 1, Tier 2 & Tier 3 Towns)",
+  officeLocation: "Ellenabad (125102), Sirsa, Haryana, India",
+  serviceArea: "Pan-India Online Delivery & Local Support",
   
   // Real Service Commitments (Zero False Claims)
   trustStats: [
