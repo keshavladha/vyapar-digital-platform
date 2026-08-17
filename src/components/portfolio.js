@@ -73,10 +73,33 @@ function renderPortfolio() {
 
               <div class="portfolio-quote" style="background: var(--bg-surface); border-left: 3px solid var(--primary); padding: 10px 12px; border-radius: 6px; font-style: normal; font-size: 0.85rem; color: var(--text-secondary); margin-top: 12px;">
                 ${conceptDesc}
-                <div style="font-weight: 700; margin-top: 6px; color: var(--text-primary); font-size: 0.78rem;">
+                <div style="font-weight: 700; margin-top: 6px; color: ${item.isLive ? 'var(--saffron)' : 'var(--text-primary)'}; font-size: 0.78rem;">
                   ✨ ${item.owner}
                 </div>
               </div>
+
+              ${item.isLive ? `
+                <div class="portfolio-live-links" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--glass-border);">
+                  ${item.liveUrl ? `
+                    <a href="${item.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline" style="font-size: 0.78rem; padding: 6px 12px; gap: 6px; text-decoration: none; font-weight: 700; color: var(--primary);">
+                      <i data-lucide="external-link" style="width: 13px; height: 13px;"></i>
+                      <span>www.windsonmotor.com</span>
+                    </a>
+                  ` : ''}
+                  ${item.instagramUrl ? `
+                    <a href="${item.instagramUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline" style="font-size: 0.78rem; padding: 6px 12px; gap: 6px; text-decoration: none; font-weight: 700; color: #E1306C;">
+                      <i data-lucide="instagram" style="width: 13px; height: 13px;"></i>
+                      <span>@windsonmotor</span>
+                    </a>
+                  ` : ''}
+                  ${item.facebookUrl ? `
+                    <a href="${item.facebookUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline" style="font-size: 0.78rem; padding: 6px 12px; gap: 6px; text-decoration: none; font-weight: 700; color: #1877F2;">
+                      <i data-lucide="facebook" style="width: 13px; height: 13px;"></i>
+                      <span>Facebook</span>
+                    </a>
+                  ` : ''}
+                </div>
+              ` : ''}
             </div>
           </div>
         `;

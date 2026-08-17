@@ -328,10 +328,28 @@ export const CONFIG = {
     }
   ],
 
-  // Sample Demo Projects & Design Showcase (No False Metric Claims)
+  // Portfolio & Client Showcase (Real Client Work & Functional Prototypes)
   caseStudies: [
     {
+      id: "cs-windson",
+      isLive: true,
+      clientName: "Windson Motor (विंडसन मोटर)",
+      category: "web-dev",
+      city: "Automobile & Spare Parts",
+      headline: "Official Custom Business Website + Complete Social Media (Instagram & Facebook) Growth",
+      headlineHi: "ऑफिशियल कस्टम वेबसाइट + इंस्टाग्राम और फेसबुक सोशल मीडिया मैनेजमेंट",
+      serviceUsed: "Full Website + Instagram & FB Management",
+      metrics: ["Official Web Portal Live", "@windsonmotor Social Media", "Lead & Catalog Integration"],
+      conceptDescHi: "विंडसन मोटर के लिए आधिकारिक वेबसाइट (www.windsonmotor.com) का निर्माण एवं उनके इंस्टाग्राम व फेसबुक (@windsonmotor) का संपूर्ण डिजिटल मैनेजमेंट।",
+      conceptDescEn: "Built official web portal (www.windsonmotor.com) and managing their full social media brand presence across Instagram & Facebook (@windsonmotor).",
+      owner: "सत्यापित लाइव क्लाइंट (Verified Live Client)",
+      liveUrl: "https://www.windsonmotor.com",
+      instagramUrl: "https://www.instagram.com/windsonmotor/",
+      facebookUrl: "https://www.facebook.com/windsonmotor"
+    },
+    {
       id: "cs-sweets",
+      isLive: false,
       clientName: "मिठाई & किराना स्टोर (डेमो मॉडल)",
       category: "web-dev",
       city: "WhatsApp Store & Catalog Concept",
@@ -345,6 +363,7 @@ export const CONFIG = {
     },
     {
       id: "cs-coaching",
+      isLive: false,
       clientName: "कोचिंग & डिफेंस एकेडमी (डेमो मॉडल)",
       category: "app-build",
       city: "Android Mobile App Concept",
@@ -358,6 +377,7 @@ export const CONFIG = {
     },
     {
       id: "cs-gym",
+      isLive: false,
       clientName: "जिम & फिटनेस सेंटर (डेमो मॉडल)",
       category: "video-edit",
       city: "Viral Instagram Reels Concept",
@@ -371,6 +391,7 @@ export const CONFIG = {
     },
     {
       id: "cs-jewellers",
+      isLive: false,
       clientName: "ज्वेलर्स & फैशन शोरूम (डेमो मॉडल)",
       category: "graphic-design",
       city: "Festival Poster & Brand Identity",
