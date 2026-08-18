@@ -5546,34 +5546,33 @@ body.intro-playing {
   transform: translateY(-1px);
 }
 
-/* Authentic Indian Heritage Art & Sage Architecture Panorama (Full Width Edge-to-Edge) */
+/* Indian Heritage Art Panorama - Full Width Bottom (Background Image Approach) */
 .sarvam-real-sculptures {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   width: 100%;
-  height: 35%;
+  height: 38%;
+  background-image: url('../assets/indian-heritage-art.png');
+  background-size: 100% auto;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  mix-blend-mode: multiply;
   pointer-events: none;
   z-index: 2;
   opacity: 0;
-  overflow: hidden;
-  animation: sarvamSculptureFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+  animation: sarvamSculptureFadeIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
 }
 
+/* Keep img hidden - using background-image instead */
 .sarvam-heritage-art-img {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-  display: block;
-  mix-blend-mode: multiply;
+  display: none;
 }
 
 @keyframes sarvamSculptureFadeIn {
-  0% { transform: translateY(20px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+  0%  { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0);    opacity: 1; }
 }
 
 @media (max-width: 768px) {
@@ -5585,7 +5584,7 @@ body.intro-playing {
     max-width: 290px;
   }
   .sarvam-real-sculptures {
-    height: 28%;
+    height: 30%;
   }
 }
 
@@ -5594,7 +5593,7 @@ body.intro-playing {
     margin-top: -2vh;
   }
   .sarvam-real-sculptures {
-    height: 24%;
+    height: 26%;
   }
 }
 
