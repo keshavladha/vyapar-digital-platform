@@ -5352,11 +5352,10 @@ body.intro-playing {
   background: #FAF7F0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
   overflow: hidden;
-  /* Push centered content up so sculpture has clear space at bottom */
-  padding-bottom: 38%;
+  padding-top: 8vh;
   transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
 }
 
@@ -5378,11 +5377,11 @@ body.intro-playing {
 /* Concentric Waveform / Mandala Resonance Rings */
 .sarvam-concentric-rings {
   position: absolute;
-  top: 45%;
+  top: 32%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 650px;
-  height: 650px;
+  width: 500px;
+  height: 500px;
   border-radius: 50%;
   background: radial-gradient(
     circle,
@@ -5547,14 +5546,14 @@ body.intro-playing {
   transform: translateY(-1px);
 }
 
-/* Indian Heritage Art Panorama - Full Width Bottom (Background Image Approach) */
+/* Indian Heritage Art Panorama - Full Width at Very Bottom */
 .sarvam-real-sculptures {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   width: 100%;
-  height: 38%;
+  height: 30%;
   background-image: url('../assets/indian-heritage-art.png');
   background-size: 100% auto;
   background-position: center bottom;
@@ -5577,24 +5576,32 @@ body.intro-playing {
 }
 
 @media (max-width: 768px) {
-  .sarvam-intro-content {
-    margin-top: -4vh;
+  .brand-intro-splash {
+    padding-top: 6vh;
   }
   .sarvam-brand-logo {
     height: 54px;
     max-width: 290px;
   }
+  .sarvam-insignia {
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+  }
   .sarvam-real-sculptures {
-    height: 30%;
+    height: 25%;
   }
 }
 
 @media (max-width: 480px) {
-  .sarvam-intro-content {
-    margin-top: -2vh;
+  .brand-intro-splash {
+    padding-top: 5vh;
+  }
+  .sarvam-brand-logo {
+    height: 44px;
+    max-width: 240px;
   }
   .sarvam-real-sculptures {
-    height: 26%;
+    height: 22%;
   }
 }
 
