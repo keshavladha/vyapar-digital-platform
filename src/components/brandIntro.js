@@ -18,10 +18,9 @@ export function initBrandIntro() {
           <span class="sarvam-motif">✦</span>
         </div>
 
-        <!-- Crisp Brand Logo & Grand Bold Wordmark -->
+        <!-- Big, Majestic Official Brand Logo (Icon + Name) -->
         <div class="sarvam-logo-wrapper">
           <img src="src/assets/logo.png" alt="vyapar digital" class="sarvam-brand-logo">
-          <h1 class="sarvam-brand-title">VYAPAR DIGITAL</h1>
         </div>
 
         <!-- Pure English Mission Tagline -->
