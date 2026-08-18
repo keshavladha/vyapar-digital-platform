@@ -9,6 +9,7 @@ import { initAdminDashboard, updateAdminLang } from './components/adminDashboard
 import { initSimulator, updateSimulatorLang } from './components/simulator.js';
 import { initLegalModal, updateLegalModalLang } from './components/legalModal.js';
 import { initChatbot, updateChatbotLang } from './components/chatbot.js?v=2.2.0';
+import { initBrandIntro } from './components/brandIntro.js?v=2.3.0';
 
 let currentLang = 'hi'; // Default Hindi for Tier 3
 
@@ -20,6 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initApp() {
+  // Brand Intro 2.6s Splash Animation
+  initBrandIntro(currentLang);
+
   // Restore theme immediately to avoid flash
   restoreTheme();
 

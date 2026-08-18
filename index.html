@@ -186,9 +186,47 @@
   <script src="https://unpkg.com/lucide@0.441.0/dist/umd/lucide.min.js"></script>
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="src/styles/style.css?v=2.2.0">
+  <link rel="stylesheet" href="src/styles/style.css?v=2.3.0">
 </head>
-<body>
+<body class="intro-playing">
+
+  <!-- ═══════════════ PREMIUM BRAND INTRO SPLASH (2.6s) ═══════════════ -->
+  <div id="brand-intro-splash" class="brand-intro-splash">
+    <div class="intro-backdrop"></div>
+    <div class="intro-ambient-glow intro-glow-saffron"></div>
+    <div class="intro-ambient-glow intro-glow-blue"></div>
+
+    <div class="intro-content">
+      <!-- Animated Logo Emblem with Radiant Glow -->
+      <div class="intro-logo-wrap">
+        <div class="intro-pulse-ring"></div>
+        <div class="intro-pulse-ring-2"></div>
+        <img src="src/assets/logo.png" alt="Vyapar Digital Logo" class="intro-logo-img">
+      </div>
+
+      <!-- High-Impact Brand Wordmark Reveal -->
+      <div class="intro-brand-title">
+        <div class="intro-brand-hindi">व्यापार DIGITAL</div>
+        <div class="intro-brand-en">VYAPAR DIGITAL</div>
+      </div>
+
+      <!-- Tagline / Mission Pledge -->
+      <div class="intro-tagline">
+        <span class="intro-flag">🇮🇳</span>
+        <span class="intro-tagline-text" data-i18n-hi="भारत के लोकल व्यापारियों का अपना डिजिटल स्टूडियो" data-i18n-en="India's Dedicated Digital Studio for Local Businesses">भारत के लोकल व्यापारियों का अपना डिजिटल स्टूडियो</span>
+      </div>
+
+      <!-- Animated Shimmer Progress Bar -->
+      <div class="intro-progress-track">
+        <div class="intro-progress-bar"></div>
+      </div>
+    </div>
+
+    <!-- Quick Skip Button -->
+    <button id="intro-skip-btn" class="intro-skip-btn" aria-label="Skip Intro Animation">
+      <span data-i18n-hi="छोड़ें" data-i18n-en="Skip">छोड़ें</span> ✕
+    </button>
+  </div>
 
   <!-- Scroll Progress Bar -->
   <div id="scroll-progress-bar"></div>
@@ -994,6 +1032,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
   <!-- Scripts -->
-  <script type="module" src="src/app.js?v=2.2.0"></script>
+  <script type="module" src="src/app.js?v=2.3.0"></script>
 </body>
 </html>
