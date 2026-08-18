@@ -5546,35 +5546,33 @@ body.intro-playing {
   transform: translateY(-1px);
 }
 
-/* Authentic Indian Heritage Art & Sage Architecture Panorama (Matches Reference Mockup) */
+/* Authentic Indian Heritage Art & Sage Architecture Panorama (Full Width Edge-to-Edge) */
 .sarvam-real-sculptures {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   width: 100%;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  height: 35%;
   pointer-events: none;
   z-index: 2;
   opacity: 0;
+  overflow: hidden;
   animation: sarvamSculptureFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
 }
 
 .sarvam-heritage-art-img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   width: 100%;
-  max-width: 100vw;
   height: auto;
-  max-height: 26vh;
-  object-fit: contain;
-  object-position: center bottom;
+  display: block;
   mix-blend-mode: multiply;
-  filter: drop-shadow(0 -4px 18px rgba(234, 88, 12, 0.08));
 }
 
 @keyframes sarvamSculptureFadeIn {
-  0% { transform: translateY(16px); opacity: 0; }
+  0% { transform: translateY(20px); opacity: 0; }
   100% { transform: translateY(0); opacity: 1; }
 }
 
@@ -5586,8 +5584,8 @@ body.intro-playing {
     height: 54px;
     max-width: 290px;
   }
-  .sarvam-heritage-art-img {
-    max-height: 22vh;
+  .sarvam-real-sculptures {
+    height: 28%;
   }
 }
 
@@ -5595,8 +5593,8 @@ body.intro-playing {
   .sarvam-intro-content {
     margin-top: -2vh;
   }
-  .sarvam-heritage-art-img {
-    max-height: 18vh;
+  .sarvam-real-sculptures {
+    height: 24%;
   }
 }
 
