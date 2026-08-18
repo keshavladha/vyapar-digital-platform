@@ -5355,6 +5355,8 @@ body.intro-playing {
   justify-content: center;
   flex-direction: column;
   overflow: hidden;
+  /* Push centered content up so sculpture has clear space at bottom */
+  padding-bottom: 38%;
   transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
 }
 
@@ -5403,7 +5405,7 @@ body.intro-playing {
   100% { transform: translate(-50%, -50%) scale(1.08); opacity: 1; }
 }
 
-/* Intro Content (Elevated for Beautiful Breathing Space) */
+/* Intro Content */
 .sarvam-intro-content {
   position: relative;
   z-index: 3;
@@ -5414,7 +5416,6 @@ body.intro-playing {
   padding: 20px;
   max-width: 620px;
   width: 90%;
-  margin-top: -6vh;
 }
 
 /* Sacred Sanskrit Insignia */
