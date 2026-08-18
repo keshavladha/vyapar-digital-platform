@@ -1,4 +1,4 @@
-// Vyapar Digital - Premium Brand Intro Splash Animation (Site Theme Matched)
+// Vyapar Digital - Sarvam.ai Inspired Sovereign Brand Intro Splash Animation
 export function initBrandIntro(currentLang = 'hi') {
   let splash = document.getElementById('brand-intro-splash');
   if (!splash) {
@@ -7,37 +7,40 @@ export function initBrandIntro(currentLang = 'hi') {
     splash.className = 'brand-intro-splash';
 
     splash.innerHTML = `
-      <div class="intro-bg-mesh"></div>
-      <div class="intro-ambient-saffron"></div>
+      <div class="sarvam-bg-ambient"></div>
+      <div class="sarvam-concentric-rings"></div>
 
-      <div class="intro-center-card">
-        <!-- Official Crisp Brand Logo -->
-        <div class="intro-logo-container">
-          <div class="intro-aura-pulse"></div>
-          <img src="src/assets/logo.png" alt="vyapar digital" class="intro-brand-logo">
+      <div class="sarvam-intro-content">
+        <!-- Sacred Vedic Insignia -->
+        <div class="sarvam-insignia">
+          <span class="sarvam-motif">𑁍</span>
+          <span class="sarvam-insignia-text">व्यापारे वसते लक्ष्मी</span>
+          <span class="sarvam-motif">𑁍</span>
         </div>
 
-        <!-- Official Tag Badge -->
-        <div class="intro-badge">
-          <span class="intro-badge-flag">🇮🇳</span>
-          <span class="intro-badge-text">
-            ${currentLang === 'hi' ? 'भारत का अपना संप्रभु डिजिटल स्टूडियो' : "India's Sovereign Digital Studio for Local Businesses"}
-          </span>
+        <!-- Crisp Brand Logo -->
+        <div class="sarvam-logo-wrapper">
+          <img src="src/assets/logo.png" alt="vyapar digital" class="sarvam-brand-logo">
         </div>
 
-        <!-- Signature Brand Headline -->
-        <h2 class="intro-headline">
-          ${currentLang === 'hi' ? 'अपने लोकल व्यापार को बनाएं <span class="text-saffron">डिजिटल ब्रांड!</span>' : 'Transform Your Local Business Into a <span class="text-saffron">Digital Brand!</span>'}
-        </h2>
+        <!-- Sovereign Mission Tagline -->
+        <div class="sarvam-brand-tagline">
+          <div class="sarvam-tagline-main">
+            ${currentLang === 'hi' ? 'भारत के लोकल व्यापारियों का संप्रभु डिजिटल स्टूडियो' : "India's Sovereign Digital Studio for Local Businesses"}
+          </div>
+          <div class="sarvam-tagline-sub">
+            ${currentLang === 'hi' ? 'परंपरागत बही-खाता से आधुनिक डिजिटल ब्रांड तक' : 'From Traditional Commerce to Modern Digital Brand'}
+          </div>
+        </div>
 
-        <!-- Sleek Saffron Progress Bar -->
-        <div class="intro-progress-wrapper">
-          <div class="intro-progress-fill"></div>
+        <!-- Sleek Hairline Progress Indicator -->
+        <div class="sarvam-progress-track">
+          <div class="sarvam-progress-fill"></div>
         </div>
       </div>
 
-      <!-- Skip Button -->
-      <button id="intro-skip-btn" class="intro-skip-btn" aria-label="Skip Intro">
+      <!-- Minimalist Skip Button -->
+      <button id="intro-skip-btn" class="sarvam-skip-btn" aria-label="Skip Intro">
         <span>${currentLang === 'hi' ? 'छोड़ें' : 'Skip'}</span> ✕
       </button>
     `;
@@ -47,7 +50,6 @@ export function initBrandIntro(currentLang = 'hi') {
 
   document.body.classList.add('intro-playing');
 
-  // Dismiss animation function
   const dismissSplash = () => {
     if (!splash || splash.classList.contains('intro-dismissed')) return;
     splash.classList.add('intro-dismissed');
@@ -60,10 +62,8 @@ export function initBrandIntro(currentLang = 'hi') {
     }, 500);
   };
 
-  // Auto dismiss after 2.2 seconds
-  const autoTimer = setTimeout(dismissSplash, 2200);
+  const autoTimer = setTimeout(dismissSplash, 2300);
 
-  // Skip button click handler
   const skipBtn = document.getElementById('intro-skip-btn');
   if (skipBtn) {
     skipBtn.addEventListener('click', () => {
@@ -72,7 +72,6 @@ export function initBrandIntro(currentLang = 'hi') {
     });
   }
 
-  // Dismiss on Escape key
   const keyHandler = (e) => {
     if (e.key === 'Escape') {
       clearTimeout(autoTimer);
