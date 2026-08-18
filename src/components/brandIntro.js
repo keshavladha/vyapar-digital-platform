@@ -1,4 +1,4 @@
-// Vyapar Digital - Sarvam.ai Inspired Sovereign Brand Intro Splash Animation (Pure English + Real Indian Stone Sculptures)
+// Vyapar Digital - Sarvam.ai Inspired Sovereign Brand Intro Splash Animation (Pure English + Authentic Indian Heritage Art)
 export function initBrandIntro() {
   let splash = document.getElementById('brand-intro-splash');
   if (!splash) {
@@ -39,10 +39,9 @@ export function initBrandIntro() {
         </div>
       </div>
 
-      <!-- Authentic Real Indian Stone Sculptures & Temple Heritage Panorama -->
+      <!-- Authentic Indian Heritage Art & Sage Architecture Panorama (User Selected) -->
       <div class="sarvam-real-sculptures" aria-hidden="true">
-        <img src="src/assets/indian-sculptures.jpg" alt="Authentic Konark Sun Temple Stone Carvings" class="sarvam-sculpture-img">
-        <div class="sarvam-sculpture-overlay"></div>
+        <img src="src/assets/indian-heritage-art.png" alt="Indian Heritage Monuments & Ancient Scholar" class="sarvam-heritage-art-img">
       </div>
 
       <!-- Minimalist Skip Button -->

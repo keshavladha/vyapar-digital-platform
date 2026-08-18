@@ -5545,14 +5545,17 @@ body.intro-playing {
   transform: translateY(-1px);
 }
 
-/* Authentic Real Indian Stone Sculptures & Temple Heritage Panorama */
+/* Authentic Indian Heritage Art & Sage Architecture Panorama (User Selected) */
 .sarvam-real-sculptures {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   width: 100%;
-  height: 220px;
+  height: 210px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
   overflow: hidden;
   pointer-events: none;
   z-index: 2;
@@ -5560,27 +5563,17 @@ body.intro-playing {
   animation: sarvamSculptureFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
 }
 
-.sarvam-sculpture-img {
+.sarvam-heritage-art-img {
   width: 100%;
+  max-width: 1400px;
   height: 100%;
-  object-fit: cover;
-  object-position: center 65%;
-  filter: sepia(0.25) saturate(1.15) contrast(1.1) brightness(0.96);
-  mix-blend-mode: multiply;
-  opacity: 0.65;
-  mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0.4) 65%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0.4) 65%, transparent 100%);
-}
-
-.sarvam-sculpture-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, #FAF7F0 0%, rgba(250, 247, 240, 0.2) 50%, rgba(234, 88, 12, 0.05) 100%);
-  pointer-events: none;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 -4px 20px rgba(234, 88, 12, 0.12));
 }
 
 @keyframes sarvamSculptureFadeIn {
-  0% { transform: translateY(16px); opacity: 0; }
+  0% { transform: translateY(18px); opacity: 0; }
   100% { transform: translateY(0); opacity: 1; }
 }
 
