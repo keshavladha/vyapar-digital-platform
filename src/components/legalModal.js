@@ -49,7 +49,7 @@ const LEGAL_CONTENT = {
         <h4>5. संपर्क सूत्र</h4>
         <p>यदि इस गोपनीयता नीति के संबंध में आपका कोई प्रश्न है, तो आप सीधे हमारे संस्थापक से संपर्क कर सकते हैं:</p>
         <p><strong>संस्थापक:</strong> केशव लड्ढा (Keshav Ladha)<br>
-        <strong>ईमेल:</strong> <a href="mailto:keshavladha24@gmail.com" style="color:var(--primary);">keshavladha24@gmail.com</a><br>
+        <strong>ईमेल:</strong> <a href="mailto:vyapardigital.in@gmail.com" style="color:var(--primary);">vyapardigital.in@gmail.com</a><br>
         <strong>व्हाट्सएप:</strong> +91 70273 40360<br>
         <strong>कार्यालय:</strong> ऐलनाबाद (125102), सिरसा, हरियाणा, भारत</p>
       </div>
@@ -90,7 +90,7 @@ const LEGAL_CONTENT = {
         <h4>5. Contact Us</h4>
         <p>For any privacy queries or data removal requests, contact the founder directly:</p>
         <p><strong>Founder:</strong> Keshav Ladha<br>
-        <strong>Email:</strong> <a href="mailto:keshavladha24@gmail.com" style="color:var(--primary);">keshavladha24@gmail.com</a><br>
+        <strong>Email:</strong> <a href="mailto:vyapardigital.in@gmail.com" style="color:var(--primary);">vyapardigital.in@gmail.com</a><br>
         <strong>WhatsApp:</strong> +91 70273 40360<br>
         <strong>Address:</strong> Ellenabad (125102), Sirsa, Haryana, India</p>
       </div>
@@ -200,7 +200,7 @@ const LEGAL_CONTENT = {
 
       <div class="legal-section">
         <h4>3. रिफंड प्रक्रिया</h4>
-        <p>रिफंड का अनुरोध करने के लिए आप सीधे <a href="mailto:keshavladha24@gmail.com" style="color:var(--primary);">keshavladha24@gmail.com</a> पर ईमेल भेज सकते हैं या व्हाट्सएप <strong>+91 70273 40360</strong> पर संपर्क कर सकते हैं। स्वीकृत रिफंड 2 से 3 कार्य दिवसों के भीतर आपके मूल UPI/बैंक खाते में वापस कर दिया जाता है।</p>
+        <p>रिफंड का अनुरोध करने के लिए आप सीधे <a href="mailto:vyapardigital.in@gmail.com" style="color:var(--primary);">vyapardigital.in@gmail.com</a> पर ईमेल भेज सकते हैं या व्हाट्सएप <strong>+91 70273 40360</strong> पर संपर्क कर सकते हैं। स्वीकृत रिफंड 2 से 3 कार्य दिवसों के भीतर आपके मूल UPI/बैंक खाते में वापस कर दिया जाता है।</p>
       </div>
     `,
     bodyEn: `
@@ -220,7 +220,7 @@ const LEGAL_CONTENT = {
 
       <div class="legal-section">
         <h4>3. Refund Processing</h4>
-        <p>To request a refund or cancellation, email <a href="mailto:keshavladha24@gmail.com" style="color:var(--primary);">keshavladha24@gmail.com</a> or WhatsApp <strong>+91 70273 40360</strong>. Approved refunds are credited back to your original UPI/bank account within 2–3 business days.</p>
+        <p>To request a refund or cancellation, email <a href="mailto:vyapardigital.in@gmail.com" style="color:var(--primary);">vyapardigital.in@gmail.com</a> or WhatsApp <strong>+91 70273 40360</strong>. Approved refunds are credited back to your original UPI/bank account within 2–3 business days.</p>
       </div>
     `
   }

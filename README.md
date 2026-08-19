@@ -64,7 +64,7 @@ This repository is pre-configured for **1-click Vercel deployment**:
 
 - **Founder**: Keshav Ladha
 - **Location**: Ellenabad (125102), Sirsa, Haryana, India
-- **WhatsApp & Call**: `+91 70273 40360`
-- **Email**: `keshavladha24@gmail.com`
+- **WhatsApp & Call**: `+91 82953 67981` / `+91 70273 40360`
+- **Email**: `vyapardigital.in@gmail.com`
 - **Instagram**: `@vyapar_digital_`
 - **Hours**: Monday – Saturday | 9:00 AM – 7:00 PM IST

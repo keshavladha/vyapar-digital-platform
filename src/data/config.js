@@ -6,7 +6,7 @@ export const CONFIG = {
   taglineEn: "Grow Your Local Business into a Digital Powerhouse",
   subTagline: "Websites • Mobile Apps • Festival Posters • Instagram Reels",
   whatsappNumber: "917027340360", // User WhatsApp number
-  supportEmail: "keshavladha24@gmail.com",
+  supportEmail: "vyapardigital.in@gmail.com",
   supportPhone: "+91 70273 40360",
   instagramHandle: "vyapar_digital_",
   officeLocation: "Ellenabad (125102), Sirsa, Haryana, India",

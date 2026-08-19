@@ -255,8 +255,8 @@ function processBotResponse(query) {
   else if (q.includes('keshav') || q.includes('founder') || q.includes('owner') || q.includes('contact') || q.includes('phone') || q.includes('number') || q.includes('address') || q.includes('ellenabad') || q.includes('sirsa') || q.includes('कॉल') || q.includes('पता') || q.includes('फोन')) {
     botReply = `🏛️ **संस्थापक & संपर्क सूत्र (Direct Founder Access):**\n\n` +
       `• **संस्थापक (Founder)**: **केशव लड्ढा (Keshav Ladha)**\n` +
-      `• **ऑफिशियल फोन / व्हाट्सएप**: **+91 70273 40360**\n` +
-      `• **ईमेल**: keshavladha24@gmail.com\n` +
+      `• **ऑफिशियल फोन / व्हाट्सएप**: **+91 82953 67981** / **+91 70273 40360**\n` +
+      `• **ईमेल**: vyapardigital.in@gmail.com\n` +
       `• **लोकेशन**: ऐलनाबाद (125102), सिरसा, हरियाणा\n` +
       `• **इंस्टाग्राम**: [@vyapar_digital_](https://www.instagram.com/vyapar_digital_/)\n\n` +
       `<a href="https://wa.me/917027340360?text=Namaste%20Keshav%20ji!%20Mujhe%20Vyapar%20Digital%20se%20services%20chahiye." target="_blank" class="chat-inline-wa-btn">💬 सीधे फाउंडर से WhatsApp पर बात करें</a>`;
